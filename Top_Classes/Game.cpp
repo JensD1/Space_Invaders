@@ -49,7 +49,7 @@ SI::Game* SI::Game::createGameInstance(SI::AFactory* aFactory)
     return SI::Game::game;
 }
 
-void SI::Game::run()
+void SI::Game::run() //todo correct the inherritance aka remove the playerEntity etc and make new ones.
 {
     //----------------------------------------------------Init--------------------------------------------------------\\
 
@@ -94,6 +94,7 @@ void SI::Game::run()
 
     //-------------------------------------------------Game_Loop------------------------------------------------------\\
 
+    //todo Make multiple screens
     while(!quit)
     {
         //
@@ -339,6 +340,13 @@ void SI::Game::run()
 
         // Update window
         window->update();
+
+        //
+        // -----------------------------------------------Misc----------------------------------------------------------
+        //
+        if(player->getLives() < 0){
+            quit = true;
+        }
 
         //
         //--------------------------------------------timer_control-----------------------------------------------------
