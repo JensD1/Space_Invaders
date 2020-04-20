@@ -344,7 +344,7 @@ void SI::Game::run() //todo correct the inherritance aka remove the playerEntity
         //
         // -----------------------------------------------Misc----------------------------------------------------------
         //
-        if(player->getLives() < 0){
+        if(player->getLives() <= 0){
             quit = true;
         }
 
