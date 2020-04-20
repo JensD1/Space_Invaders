@@ -15,13 +15,13 @@ namespace SI {
         // Constructors
         Projectile(float, float, float, float, float, float);
         virtual ~Projectile();
-        Projectile(const Projectile&);
+        Projectile(const SI::Projectile&);
 
         // Operators
-        Projectile& operator=(const Projectile&);
+        SI::Projectile& operator=(const SI::Projectile&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void hasCollision();
         bool getIsFired();

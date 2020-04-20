@@ -6,25 +6,20 @@
 #define SPACE_INVADORS_SDLENEMYSHIP_H
 
 #include "../Entities/EnemyShip.h"
-#include "SdlWindow.h"
 
 namespace SDL_SI {
     class SdlEnemyShip : public SI::EnemyShip {
-    private:
-        // Variables
-        SdlWindow* sdlWindow;
-
     public:
         // Constructors
-        SdlEnemyShip(float, float, float, float, float, float, SdlWindow*);
+        SdlEnemyShip(float, float, float, float, float, float);
         ~SdlEnemyShip();
-        SdlEnemyShip(const SdlEnemyShip&);
+        SdlEnemyShip(const SDL_SI::SdlEnemyShip&);
 
         // Operators
-        SdlEnemyShip& operator=(const SdlEnemyShip&);
+        SDL_SI::SdlEnemyShip& operator=(const SDL_SI::SdlEnemyShip&);
 
         // Methods
-        void visualize();
+        void visualize(SI::Window*);
     };
 }
 

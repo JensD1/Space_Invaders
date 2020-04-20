@@ -6,25 +6,20 @@
 #define SPACE_INVADORS_SDLPROJECTILE_H
 
 #include "../Entities/Projectile.h"
-#include "SdlWindow.h"
 
 namespace SDL_SI {
     class SdlProjectile : public SI::Projectile {
-    private:
-        // Variables
-        SdlWindow* sdlWindow;
-
     public:
         // Constructors
-        SdlProjectile(float, float, float, float, float, float, SdlWindow*);
+        SdlProjectile(float, float, float, float, float, float);
         ~SdlProjectile();
-        SdlProjectile(const SdlProjectile&);
+        SdlProjectile(const SDL_SI::SdlProjectile&);
 
         // Operators
-        SdlProjectile& operator=(const SdlProjectile&);
+        SDL_SI::SdlProjectile& operator=(const SDL_SI::SdlProjectile&);
 
         // Methods
-        void visualize();
+        void visualize(SI::Window*);
     };
 }
 

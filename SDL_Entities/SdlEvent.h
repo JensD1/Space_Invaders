@@ -14,10 +14,10 @@ namespace SDL_SI {
         // Constructors
         SdlEvent();
         virtual ~SdlEvent();
-        SdlEvent(const SdlEvent &);
+        SdlEvent(const SDL_SI::SdlEvent &);
 
         // Operators
-        SdlEvent &operator=(const SdlEvent &);
+        SDL_SI::SdlEvent &operator=(const SDL_SI::SdlEvent &);
 
         // Method
         std::set<SI::Control> handleEvent();

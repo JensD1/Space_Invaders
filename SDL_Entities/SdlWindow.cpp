@@ -10,7 +10,7 @@
 //
 // Constructors---------------------------------------------------------------------------------------------------------
 //
-SDL_SI::SdlWindow::SdlWindow()
+SDL_SI::SdlWindow::SdlWindow(): SI::Window()
 {
     assert(SDL_SI::SdlWindow::init()); // zorg dat init correct voltooid kan worden!
     SDL_SI::SdlWindow::gSpriteSheetTexture = new SDL_SI::LTexture(SDL_SI::SdlWindow::gRenderer);
@@ -23,7 +23,7 @@ SDL_SI::SdlWindow::~SdlWindow()
     delete SDL_SI::SdlWindow::gSpriteSheetTexture;
 }
 
-SDL_SI::SdlWindow::SdlWindow(const SDL_SI::SdlWindow& other)
+SDL_SI::SdlWindow::SdlWindow(const SDL_SI::SdlWindow& other) : SI::Window(other)
 {
     SDL_SI::SdlWindow::gSpriteSheetTexture = other.gSpriteSheetTexture;
     SDL_SI::SdlWindow::gRenderer = other.gRenderer;
@@ -39,6 +39,7 @@ SDL_SI::SdlWindow& SDL_SI::SdlWindow::operator=(const SDL_SI::SdlWindow& other)
         SDL_SI::SdlWindow::gSpriteSheetTexture = other.gSpriteSheetTexture;
         SDL_SI::SdlWindow::gRenderer = other.gRenderer;
         for(int i = 0; i < SDL_SI::NUMBER_OF_SPRITES; i++){
+            SI::Window::operator=(other);
             SDL_SI::SdlWindow::gSpriteClips[i] = other.gSpriteClips[i];
         }
         SDL_SI::SdlWindow::gWindow = other.gWindow;
@@ -190,7 +191,6 @@ void SDL_SI::SdlWindow::clear()
 
 void SDL_SI::SdlWindow::drawSprite(float xPos, float yPos, float tempWidth, float tempHeight, int type)
 {
-
     //Render top left sprite
     int x = xPos * SDL_SI::SCREEN_WIDTH;
     int y = yPos * SDL_SI::SCREEN_HEIGHT;

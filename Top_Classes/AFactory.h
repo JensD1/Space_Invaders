@@ -13,6 +13,7 @@
 #include "../Entities/NBonus.h"
 #include "../Entities/Event.h"
 #include "../Entities/Timer.h"
+#include "../Entities/Window.h"
 
 namespace SI {
     class AFactory {
@@ -26,13 +27,10 @@ namespace SI {
         virtual NBonus* createNBonus(float, float, float, float, float, float) = 0;
         virtual Event* createEvent() = 0;
         virtual Timer* createTimer() = 0;
+        virtual Window* createWindow() = 0;
 
         //Constructors
         virtual ~AFactory(){};
-
-        // Methods
-        virtual void clearWindow() = 0;
-        virtual void updateWindow() = 0;
     };
 }
 #endif //SPACE_INVADORS_AFACTORY_H

@@ -11,10 +11,10 @@ namespace SI {
         // Constructors
         Timer();
         virtual ~Timer();
-        Timer(const Timer&);
+        Timer(const SI::Timer&);
 
         // Operators
-        Timer& operator=(const Timer&);
+        SI::Timer& operator=(const SI::Timer&);
 
         virtual bool timePassed(unsigned long) = 0;
         virtual void start() = 0;

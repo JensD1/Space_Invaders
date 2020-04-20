@@ -6,25 +6,20 @@
 #define SPACE_INVADORS_SDLBULLET_H
 
 #include "../Entities/Bullet.h"
-#include "SdlWindow.h"
 
 namespace SDL_SI {
     class SdlBullet : public SI::Bullet {
-    private:
-        // Variables
-        SdlWindow* sdlWindow;
-
     public:
         // Constructors
-        SdlBullet(float, float, float, float, float, float, SdlWindow*);
+        SdlBullet(float, float, float, float, float, float);
         ~SdlBullet();
-        SdlBullet(const SdlBullet&);
+        SdlBullet(const SDL_SI::SdlBullet&);
 
         // Operators
-        SdlBullet& operator=(const SdlBullet&);
+        SDL_SI::SdlBullet& operator=(const SDL_SI::SdlBullet&);
 
         // Methods
-        void visualize();
+        void visualize(SI::Window*);
     };
 }
 

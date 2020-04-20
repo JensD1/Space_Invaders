@@ -6,15 +6,9 @@
 #define SPACE_INVADORS_SDLFACTORY_H
 
 #include "AFactory.h"
-#include "../SDL_Entities/SdlEvent.h"
-#include "../SDL_Entities/SdlWindow.h"
 
 namespace SDL_SI {
     class SdlFactory : public SI::AFactory {
-    private:
-        // Objects
-        SdlWindow* sdlWindow;
-
     public:
         // Constructors
         SdlFactory();
@@ -30,13 +24,10 @@ namespace SDL_SI {
         SI::NBonus* createNBonus(float, float, float, float, float, float);
         SI::Event* createEvent();
         SI::Timer* createTimer();
+        SI::Window* createWindow();
 
         // Operators
         SdlFactory& operator=(const SdlFactory&);
-
-        // Methods
-        void clearWindow();
-        void updateWindow();
     };
 }
 

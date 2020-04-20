@@ -29,10 +29,10 @@ namespace SDL_SI {
         ~LTexture();
 
         // copy constructor
-        LTexture(const LTexture&);
+        LTexture(const SDL_SI::LTexture&);
 
         // operators
-        LTexture& operator=(const LTexture&);
+        SDL_SI::LTexture& operator=(const SDL_SI::LTexture&);
 
         //Loads image at specified path
         bool loadFromFile(std::string path);

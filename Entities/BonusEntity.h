@@ -15,13 +15,13 @@ namespace SI {
         // Constructors
         BonusEntity(float, float, float, float, float, float);
         virtual ~BonusEntity();
-        BonusEntity(const BonusEntity&);
+        BonusEntity(const SI::BonusEntity&);
 
         // Operators
-        BonusEntity& operator=(const BonusEntity&);
+        SI::BonusEntity& operator=(const SI::BonusEntity&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void resetPosition();
         void hasCollision();
