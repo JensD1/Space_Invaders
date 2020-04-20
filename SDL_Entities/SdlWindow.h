@@ -5,6 +5,7 @@
 #ifndef SPACE_INVADORS_SDLWINDOW_H
 #define SPACE_INVADORS_SDLWINDOW_H
 
+#include <SDL2/SDL_ttf.h>
 #include "SDL2/SDL.h"
 #include "LTexture.h"
 #include "../GameConstants.h"
@@ -22,7 +23,9 @@ class SdlWindow: public SI::Window{
 
         //Scene sprites
         SDL_Rect gSpriteClips[SDL_SI::NUMBER_OF_SPRITES];
-        LTexture* gSpriteSheetTexture;
+        LTexture* gTexture;
+        //Globally used font
+        TTF_Font* gFont;
 
     public:
         // Constructors
@@ -37,7 +40,8 @@ class SdlWindow: public SI::Window{
         bool init();
 
         //Loads media
-        bool loadMedia();
+        bool loadSpriteMedia();
+        bool loadTextMedia();
 
         //Frees media and shuts down SDL
         void close();
@@ -45,6 +49,7 @@ class SdlWindow: public SI::Window{
         void update();
         void clear();
         void drawSprite(float, float, float, float, int);
+        void drawText(float, float, float, float, std::string);
     };
 }
 

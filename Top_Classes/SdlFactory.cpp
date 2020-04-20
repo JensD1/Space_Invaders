@@ -76,7 +76,7 @@ SI::Timer* SDL_SI::SdlFactory::createTimer()
     return new SdlTimer();
 }
 
-SI::Window *SDL_SI::SdlFactory::createWindow()
+SI::Window* SDL_SI::SdlFactory::createWindow()
 {
     return new SdlWindow();
 }

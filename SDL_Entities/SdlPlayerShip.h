@@ -9,7 +9,8 @@
 
 namespace SDL_SI {
     class SdlPlayerShip : public SI::PlayerShip {
-
+    private:
+        int j;
     public:
         // Constructors
         SdlPlayerShip(float, float, float, float, float, float);

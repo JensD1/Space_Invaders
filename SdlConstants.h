@@ -18,6 +18,10 @@ namespace SDL_SI{
         PBONUS_SPRITE,
         NBONUS_SPRITE
     };
+    enum TypeOfRender{
+        SPRITE,
+        TEXT
+    };
     const int NUMBER_OF_SPRITES     = 7;
 }
 
