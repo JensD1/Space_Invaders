@@ -60,6 +60,13 @@ namespace SI {
     const unsigned long fpsMs = 8; // Frames Per Second formula: (1/ SDL_SI::FPP) * 1000  // momenteel +-120 fps (133)
     const unsigned long TIME_BETWEEN_SHOOTING_MS = 300;
     const unsigned long BONUS_WORKING_TIME_MS = 5000;
+
+    // lives
+    const float LIVES_WIDTH         = 0.03;
+    const float LIVES_HEIGHT        = 0.03;
+    const float LIVES_START_POS_X   = 0.05;
+    const float LIVES_START_POS_Y   = 0.01;
+    const float LIVES_SPACING       = 0.03;
 }
 
 #endif //SPACE_INVADORS_GAMECONSTANTS_H

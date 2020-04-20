@@ -10,7 +10,13 @@ namespace SDL_SI{
     const int SCREEN_WIDTH = 750; //640;
     const int SCREEN_HEIGHT = 750; //480;
     enum Type{
-        PLAYER_SPRITE, BULLET_SPRITE, ENEMY_SPRITE, PROJECTILE_SPRITE, BOSS_SPRITE, PBONUS_SPRITE, NBONUS_SPRITE
+        PLAYER_SPRITE,
+        BULLET_SPRITE,
+        ENEMY_SPRITE,
+        PROJECTILE_SPRITE,
+        BOSS_SPRITE,
+        PBONUS_SPRITE,
+        NBONUS_SPRITE
     };
     const int NUMBER_OF_SPRITES     = 7;
 }

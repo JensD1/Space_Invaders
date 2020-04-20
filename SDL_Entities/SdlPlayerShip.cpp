@@ -43,4 +43,8 @@ SDL_SI::SdlPlayerShip& SDL_SI::SdlPlayerShip::operator=(const SDL_SI::SdlPlayerS
 void SDL_SI::SdlPlayerShip::visualize(SI::Window* window)
 {
     window->drawSprite(SDL_SI::SdlPlayerShip::xPos, SDL_SI::SdlPlayerShip::yPos, SDL_SI::SdlPlayerShip::width, SDL_SI::SdlPlayerShip::height , SDL_SI::PLAYER_SPRITE);
+    for(int i = 0; i < SI::PlayerShip::getLives(); i++){
+        window->drawSprite(SI::LIVES_START_POS_X + i * (SI::LIVES_WIDTH + SI::LIVES_SPACING), SI::LIVES_START_POS_Y,
+                SI::LIVES_WIDTH, SI::LIVES_HEIGHT, SDL_SI::PLAYER_SPRITE);
+    }
 }

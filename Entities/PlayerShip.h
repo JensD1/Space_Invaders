@@ -10,6 +10,8 @@
 
 namespace SI {
     class PlayerShip : public PlayerEntity {
+    private:
+        int lives;
     public:
         // Constructors
         PlayerShip(float, float, float, float, float, float);
@@ -20,6 +22,8 @@ namespace SI {
         SI::PlayerShip& operator=(const SI::PlayerShip&);
 
         // Methods
+        void setLives(int);
+        int getLives();
         virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void hasCollision();
