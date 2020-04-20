@@ -18,10 +18,10 @@ namespace SDL_SI {
         // Constructors
         SdlTimer();
         ~SdlTimer();
-        SdlTimer(const SdlTimer&);
+        SdlTimer(const SDL_SI::SdlTimer&);
 
         // Operators
-        SdlTimer& operator=(const SdlTimer&);
+        SDL_SI::SdlTimer& operator=(const SDL_SI::SdlTimer&);
 
         //Methods
         bool timePassed(unsigned long);

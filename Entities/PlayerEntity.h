@@ -13,13 +13,13 @@ namespace SI {
         // Constructors
         PlayerEntity(float, float, float, float, float, float);
         virtual ~PlayerEntity();
-        PlayerEntity(const PlayerEntity&);
+        PlayerEntity(const SI::PlayerEntity&);
 
         // Operators
-        PlayerEntity& operator=(const PlayerEntity&);
+        SI::PlayerEntity& operator=(const SI::PlayerEntity&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
         virtual void updatePosition() = 0;
         virtual void hasCollision() = 0;
     };

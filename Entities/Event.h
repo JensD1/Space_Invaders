@@ -18,19 +18,19 @@ namespace SI {
         // Constructors
         Event();
         virtual ~Event();
-        Event(const Event&);
+        Event(const SI::Event&);
 
         // Operators
-        Event& operator=(const Event&);
+        SI::Event& operator=(const SI::Event&);
 
         // Setters
-        virtual void setControl(Control);
+        virtual void setControl(SI::Control);
 
         // Getters
-        virtual Control getControl() const;
+        virtual SI::Control getControl() const;
 
         // Methods
-        virtual std::set<Control> handleEvent() = 0;
+        virtual std::set<SI::Control> handleEvent() = 0;
 
     };
 }

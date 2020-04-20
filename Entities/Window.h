@@ -11,10 +11,10 @@ namespace SI {
         // Constructors
         Window();
         virtual ~Window();
-        Window(const Window&);
+        Window(const SI::Window&);
 
         // Operators
-        Window& operator=(const Window&);
+        SI::Window& operator=(const SI::Window&);
 
         virtual void update() = 0;
         virtual void clear() = 0;

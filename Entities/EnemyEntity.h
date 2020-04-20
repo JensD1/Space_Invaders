@@ -12,13 +12,13 @@ namespace SI {
         // Constructors
         EnemyEntity(float, float, float, float, float, float);
         virtual ~EnemyEntity();
-        EnemyEntity(const EnemyEntity&);
+        EnemyEntity(const SI::EnemyEntity&);
 
         // Operators
-        EnemyEntity& operator=(const EnemyEntity&);
+        SI::EnemyEntity& operator=(const SI::EnemyEntity&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
         virtual void updatePosition() = 0;
         virtual void hasCollision() = 0;
     };

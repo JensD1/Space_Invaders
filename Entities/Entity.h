@@ -6,6 +6,7 @@
 #define SPACE_INVADORS_ENTITY_H
 
 #include "../GameConstants.h"
+#include "Window.h"
 
 namespace SI {
     class Entity {
@@ -23,11 +24,11 @@ namespace SI {
         Entity();
         Entity(float, float, float, float, float, float);
         virtual ~Entity();
-        Entity(const Entity&);
+        Entity(const SI::Entity&);
 
         // Methods
-        bool detectCollision(Entity*);
-        virtual void visualize() = 0;
+        bool detectCollision(SI::Entity*);
+        virtual void visualize(SI::Window*) = 0;
         virtual void updatePosition() = 0;
         virtual void hasCollision() = 0;
 
@@ -48,7 +49,7 @@ namespace SI {
         void setDy(float dy);
 
         // Operators
-        Entity& operator=(const Entity&);
+        SI::Entity& operator=(const SI::Entity&);
     };
 }
 

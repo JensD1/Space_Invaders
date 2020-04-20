@@ -4,14 +4,14 @@
 
 #include "SdlProjectile.h"
 #include <iostream>
+#include "../SdlConstants.h"
 
 //
 // Constructors---------------------------------------------------------------------------------------------------------
 //
-SDL_SI::SdlProjectile::SdlProjectile(float xPos, float yPos, float width, float height, float dx, float dy, SDL_SI::SdlWindow* sdlWindow) : SI::Projectile(xPos, yPos, width, height, dx, dy)
+SDL_SI::SdlProjectile::SdlProjectile(float xPos, float yPos, float width, float height, float dx, float dy) : SI::Projectile(xPos, yPos, width, height, dx, dy)
 {
     std::cout << "SdlProjectile created" << std::endl;
-    SDL_SI::SdlProjectile::sdlWindow = sdlWindow;
 }
 
 SDL_SI::SdlProjectile::~SdlProjectile()
@@ -21,7 +21,6 @@ SDL_SI::SdlProjectile::~SdlProjectile()
 
 SDL_SI::SdlProjectile::SdlProjectile(const SDL_SI::SdlProjectile& other): SI::Projectile(other)
 {
-    SDL_SI::SdlProjectile::sdlWindow = other.sdlWindow;
     std::cout << "SdlProjectile copied" << std::endl;
 }
 
@@ -32,7 +31,6 @@ SDL_SI::SdlProjectile& SDL_SI::SdlProjectile::operator=(const SDL_SI::SdlProject
 {
     if(this != &other){
         SI::Projectile::operator=(other);
-        SDL_SI::SdlProjectile::sdlWindow = other.sdlWindow;
     }
     std::cout << "SdlProjectile assigned" << std::endl;
     return *this;
@@ -41,7 +39,7 @@ SDL_SI::SdlProjectile& SDL_SI::SdlProjectile::operator=(const SDL_SI::SdlProject
 //
 // Methods--------------------------------------------------------------------------------------------------------------
 //
-void SDL_SI::SdlProjectile::visualize()
+void SDL_SI::SdlProjectile::visualize(SI::Window* window)
 {
-    SDL_SI::SdlProjectile::sdlWindow->drawSprite(SDL_SI::SdlProjectile::xPos, SDL_SI::SdlProjectile::yPos, SDL_SI::SdlProjectile::width, SDL_SI::SdlProjectile::height , SDL_SI::PROJECTILE_SPRITE);
+    window->drawSprite(SDL_SI::SdlProjectile::xPos, SDL_SI::SdlProjectile::yPos, SDL_SI::SdlProjectile::width, SDL_SI::SdlProjectile::height , SDL_SI::PROJECTILE_SPRITE);
 }

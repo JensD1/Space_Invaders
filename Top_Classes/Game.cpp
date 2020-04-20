@@ -53,6 +53,9 @@ void SI::Game::run()
 {
     //----------------------------------------------------Init--------------------------------------------------------\\
 
+    // Window
+    SI::Window* window = SI::Game::aFactory->createWindow();
+
     // events
     SI::Event* event = SI::Game::aFactory->createEvent();
 
@@ -302,40 +305,40 @@ void SI::Game::run()
         //
 
         // clear the window
-        SI::Game::aFactory->clearWindow();
+        window->clear();
 
         // Player
-        player->visualize();
+        player->visualize(window);
 
         // Enemies
         for(SI::EnemyShip* enemy: enemies){
-            enemy->visualize();
+            enemy->visualize(window);
         }
 
         // Bullets
         if(bullet->getBulletShot()){
-            bullet->visualize();
+            bullet->visualize(window);
         }
 
         // Projectiles
         for(SI::Projectile* projectile: projectiles){
             if(projectile->getIsFired()){
-                projectile->visualize();
+                projectile->visualize(window);
             }
         }
 
         // PBonus
         if(pbonus->getInField()){
-            pbonus->visualize();
+            pbonus->visualize(window);
         }
 
         // NBonus
         if(nbonus->getInField()){
-            nbonus->visualize();
+            nbonus->visualize(window);
         }
 
         // Update window
-        SI::Game::aFactory->updateWindow();
+        window->update();
 
         //
         //--------------------------------------------timer_control-----------------------------------------------------

@@ -12,13 +12,13 @@ namespace SI {
         // Constructors
         PBonus(float, float, float, float, float, float);
         virtual ~PBonus();
-        PBonus(const PBonus&);
+        PBonus(const SI::PBonus&);
 
         // Operators
-        PBonus& operator=(const PBonus&);
+        SI::PBonus& operator=(const SI::PBonus&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
     };
 }
 

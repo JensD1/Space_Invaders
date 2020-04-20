@@ -6,25 +6,20 @@
 #define SPACE_INVADORS_SDLPBONUS_H
 
 #include "../Entities/PBonus.h"
-#include "SdlWindow.h"
 
 namespace SDL_SI {
     class SdlPBonus : public SI::PBonus {
-    private:
-        // Variables
-        SdlWindow* sdlWindow;
-
     public:
         // Constructors
-        SdlPBonus(float, float, float, float, float, float, SdlWindow*);
+        SdlPBonus(float, float, float, float, float, float);
         ~SdlPBonus();
-        SdlPBonus(const SdlPBonus&);
+        SdlPBonus(const SDL_SI::SdlPBonus&);
 
         // Operators
-        SdlPBonus& operator=(const SdlPBonus&);
+        SDL_SI::SdlPBonus& operator=(const SDL_SI::SdlPBonus&);
 
         // Methods
-        void visualize();
+        void visualize(SI::Window*);
     };
 }
 #endif //SPACE_INVADORS_SDLPBONUS_H

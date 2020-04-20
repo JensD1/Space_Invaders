@@ -14,13 +14,13 @@ namespace SI {
         // Constructors
         EnemyShip(float, float, float, float, float, float);
         virtual ~EnemyShip();
-        EnemyShip(const EnemyShip&);
+        EnemyShip(const SI::EnemyShip&);
 
         // Operators
-        EnemyShip& operator=(const EnemyShip&);
+        SI::EnemyShip& operator=(const SI::EnemyShip&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void hasCollision();
         bool fireProjectile();

@@ -6,6 +6,7 @@
 #define SPACE_INVADORS_PLAYERSHIP_H
 
 #include "PlayerEntity.h"
+#include "Window.h"
 
 namespace SI {
     class PlayerShip : public PlayerEntity {
@@ -13,13 +14,13 @@ namespace SI {
         // Constructors
         PlayerShip(float, float, float, float, float, float);
         virtual ~PlayerShip();
-        PlayerShip(const PlayerShip&);
+        PlayerShip(const SI::PlayerShip&);
 
         // Operators
-        PlayerShip& operator=(const PlayerShip&);
+        SI::PlayerShip& operator=(const SI::PlayerShip&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void hasCollision();
     };

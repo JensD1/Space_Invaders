@@ -14,13 +14,13 @@ namespace SI {
         // Constructors
         Bullet(float, float, float, float, float, float);
         virtual ~Bullet();
-        Bullet(const Bullet&);
+        Bullet(const SI::Bullet&);
 
         // Operators
-        Bullet& operator=(const Bullet&);
+        SI::Bullet& operator=(const SI::Bullet&);
 
         // Methods
-        virtual void visualize() = 0;
+        virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void hasCollision();
         bool getBulletShot();
