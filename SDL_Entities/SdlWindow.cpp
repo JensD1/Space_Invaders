@@ -6,6 +6,8 @@
 #include "../GameConstants.h"
 #include <assert.h>
 #include "SDL2/SDL_image.h"
+#include <SDL2/SDL_ttf.h>
+#include <iostream>
 
 //
 // Constructors---------------------------------------------------------------------------------------------------------
@@ -13,19 +15,21 @@
 SDL_SI::SdlWindow::SdlWindow(): SI::Window()
 {
     assert(SDL_SI::SdlWindow::init()); // zorg dat init correct voltooid kan worden!
-    SDL_SI::SdlWindow::gSpriteSheetTexture = new SDL_SI::LTexture(SDL_SI::SdlWindow::gRenderer);
-    assert(SDL_SI::SdlWindow::loadMedia()); // zorg ervoor dat de sprite images worden ingeladen.
+    SDL_SI::SdlWindow::gFont = TTF_OpenFont( "../Media/lazy.ttf", 28 );
+    SDL_SI::SdlWindow::gTexture = new SDL_SI::LTexture(SDL_SI::SdlWindow::gRenderer, SDL_SI::SdlWindow::gFont);
+    assert(SDL_SI::SdlWindow::loadSpriteMedia()); // zorg ervoor dat de sprite images worden ingeladen.
+    assert(SDL_SI::SdlWindow::loadTextMedia()); // zorg ervoor dat de Text wordt ingeladen.
 }
 
 SDL_SI::SdlWindow::~SdlWindow()
 {
     SDL_SI::SdlWindow::close();
-    delete SDL_SI::SdlWindow::gSpriteSheetTexture;
+    delete SDL_SI::SdlWindow::gTexture;
 }
 
 SDL_SI::SdlWindow::SdlWindow(const SDL_SI::SdlWindow& other) : SI::Window(other)
 {
-    SDL_SI::SdlWindow::gSpriteSheetTexture = other.gSpriteSheetTexture;
+    SDL_SI::SdlWindow::gTexture = other.gTexture;
     SDL_SI::SdlWindow::gRenderer = other.gRenderer;
     for(int i = 0; i < SDL_SI::NUMBER_OF_SPRITES; i++){
         SDL_SI::SdlWindow::gSpriteClips[i] = other.gSpriteClips[i];
@@ -36,7 +40,7 @@ SDL_SI::SdlWindow::SdlWindow(const SDL_SI::SdlWindow& other) : SI::Window(other)
 SDL_SI::SdlWindow& SDL_SI::SdlWindow::operator=(const SDL_SI::SdlWindow& other)
 {
     if (this != &other){
-        SDL_SI::SdlWindow::gSpriteSheetTexture = other.gSpriteSheetTexture;
+        SDL_SI::SdlWindow::gTexture = other.gTexture;
         SDL_SI::SdlWindow::gRenderer = other.gRenderer;
         for(int i = 0; i < SDL_SI::NUMBER_OF_SPRITES; i++){
             SI::Window::operator=(other);
@@ -94,6 +98,12 @@ bool SDL_SI::SdlWindow::init()
                     printf( "SDL_image could not initialize! SDL_mage Error: %s\n", IMG_GetError() );
                     success = false;
                 }
+                //Initialize SDL_ttf
+                if( TTF_Init() == -1 )
+                {
+                    printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+                    success = false;
+                }
             }
         }
     }
@@ -104,7 +114,11 @@ bool SDL_SI::SdlWindow::init()
 void SDL_SI::SdlWindow::close()
 {
     //Free loaded images
-    SDL_SI::SdlWindow::gSpriteSheetTexture->free();
+    SDL_SI::SdlWindow::gTexture->free();
+
+    //Free global font
+    TTF_CloseFont( gFont );
+    gFont = NULL;
 
     //Destroy window
     SDL_DestroyRenderer( SDL_SI::SdlWindow::gRenderer );
@@ -113,17 +127,18 @@ void SDL_SI::SdlWindow::close()
     SDL_SI::SdlWindow::gRenderer = NULL;
 
     //Quit SDL subsystems
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
 }
 
-bool SDL_SI::SdlWindow::loadMedia()
+bool SDL_SI::SdlWindow::loadSpriteMedia()
 {
     //Loading success flag
     bool success = true;
 
     //Load sprite sheet texture
-    if( !SDL_SI::SdlWindow::gSpriteSheetTexture->loadFromFile( "../Media/sprites.png" ) ) // de R" zorgt ervoor dat we niet \\ moeten plaatsen om een \ teken te krijgen.
+    if( !SDL_SI::SdlWindow::gTexture->loadImageFromFile( "../Media/sprites.png" ) ) // de R" zorgt ervoor dat we niet \\ moeten plaatsen om een \ teken te krijgen.
     {
         printf( "Failed to load sprite sheet texture!\n" );
         success = false;
@@ -176,6 +191,31 @@ bool SDL_SI::SdlWindow::loadMedia()
     return success;
 }
 
+bool SDL_SI::SdlWindow::loadTextMedia()
+{
+    //Loading success flag
+    bool success = true;
+
+    //Open the font
+    if( gFont == nullptr )
+    {
+        printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
+        success = false;
+    }
+    else
+    {
+        //Render text
+        SDL_Color textColor = { 255, 255, 255 };
+        if( !gTexture->loadFromRenderedText("The quick brown fox jumps over the lazy dog", textColor ))
+        {
+            printf( "Failed to render text texture!\n" );
+            success = false;
+        }
+    }
+
+    return success;
+}
+
 void SDL_SI::SdlWindow::update()
 {
     //Update screen
@@ -196,5 +236,17 @@ void SDL_SI::SdlWindow::drawSprite(float xPos, float yPos, float tempWidth, floa
     int y = yPos * SDL_SI::SCREEN_HEIGHT;
     int width = tempWidth * SDL_SI::SCREEN_WIDTH;
     int height = tempHeight * SDL_SI::SCREEN_HEIGHT;
-    SDL_SI::SdlWindow::gSpriteSheetTexture->render(x, y, width, height, &SDL_SI::SdlWindow::gSpriteClips[type]);
+    SDL_SI::SdlWindow::gTexture->render(x, y, width, height, SDL_SI::SPRITE, &SDL_SI::SdlWindow::gSpriteClips[type]);
+}
+
+void SDL_SI::SdlWindow::drawText(float xPos, float yPos, float tempWidth, float tempHeight, std::string string)
+{
+    //Render top left sprite
+    int x = xPos * SDL_SI::SCREEN_WIDTH;
+    int y = yPos * SDL_SI::SCREEN_HEIGHT;
+    int width = tempWidth * SDL_SI::SCREEN_WIDTH;
+    int height = tempHeight * SDL_SI::SCREEN_HEIGHT;
+    SDL_Color textColor = { 255, 255, 255 };
+    SDL_SI::SdlWindow::gTexture->loadFromRenderedText(string, textColor);
+    SDL_SI::SdlWindow::gTexture->render(x, y, width, height, SDL_SI::TEXT);
 }

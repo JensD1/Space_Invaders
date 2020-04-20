@@ -5,6 +5,8 @@
 #ifndef SPACE_INVADERS_WINDOW_H
 #define SPACE_INVADERS_WINDOW_H
 
+#include <string>
+
 namespace SI {
     class Window {
     public:
@@ -19,6 +21,7 @@ namespace SI {
         virtual void update() = 0;
         virtual void clear() = 0;
         virtual void drawSprite(float, float, float, float, int) = 0;
+        virtual void drawText(float, float, float, float, std::string) = 0;
     };
 }
 

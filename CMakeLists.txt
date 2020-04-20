@@ -55,6 +55,12 @@ SET(SRC
         SDL_Entities/SdlWindow.h
         SDL_Entities/LTexture.cpp
         SDL_Entities/LTexture.h
-        SdlConstants.h SDL_Entities/SdlTimer.cpp SDL_Entities/SdlTimer.h Entities/Timer.cpp Entities/Timer.h Entities/Window.cpp Entities/Window.h)
+        SdlConstants.h
+        SDL_Entities/SdlTimer.cpp
+        SDL_Entities/SdlTimer.h
+        Entities/Timer.cpp
+        Entities/Timer.h
+        Entities/Window.cpp
+        Entities/Window.h)
 add_executable(Space_Invaders ${SRC} Top_Classes/main.cpp)
-target_link_libraries(Space_Invaders ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image)
+target_link_libraries(Space_Invaders ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf)
