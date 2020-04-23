@@ -215,6 +215,7 @@ void SI::Game::run() //todo correct the inherritance aka remove the playerEntity
                                 enemy->getXPos() + SI::ENEMY_WIDTH / 2 - SI::PROJECTILE_WIDTH / 2);
                         tempProjectile->setIsFired(true);
                         enemyTimer->start();
+                        std::cout << "Fired!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
                         projectilesFired++;
                     }
                 }
@@ -241,6 +242,7 @@ void SI::Game::run() //todo correct the inherritance aka remove the playerEntity
                 if ((*enemyIt)->detectCollision(bullet)) {
                     delete (*enemyIt);
                     enemyIt = enemies.erase(enemyIt);
+                    player->addScore(SI::SCORE_HIT_ENEMY);
                     if(!pbonus->getActive()) {
                         bullet->hasCollision();
                     }
@@ -254,17 +256,19 @@ void SI::Game::run() //todo correct the inherritance aka remove the playerEntity
         enemyIt = enemies.begin();
         while(enemyIt != enemies.end()) {
             if ((*enemyIt)->detectCollision(player)) {
+                player->addScore(SI::SCORE_END_GAME);
                 quit = true;
             }
             ++enemyIt;
         }
 
-        // Bullet with projectile
-        if(bullet->getBulletShot()) {
-            for (SI::Projectile *projectile: projectiles) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
+        // Bullet with projectile // todo kijk na waarom het niet andersom werkt
+        for (SI::Projectile *projectile: projectiles) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
+            if(bullet->getBulletShot()) {
                 if (projectile->detectCollision(bullet)) {
                     projectile->hasCollision();
                     projectilesFired--;
+                    player->addScore(SI::SCORE_HIT_PROJECTILE);
                     if(!pbonus->getActive()) {
                         bullet->hasCollision();
                     }
@@ -277,6 +281,7 @@ void SI::Game::run() //todo correct the inherritance aka remove the playerEntity
         for(int i=0; i < projectiles.size() && !playerCollision; i++) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
            if (projectiles[i]->detectCollision(player)) {
                 playerCollision = true;
+                player->addScore(SI::SCORE_HIT_PLAYER);
             }
         }
         if(playerCollision) // This goes further on the previous

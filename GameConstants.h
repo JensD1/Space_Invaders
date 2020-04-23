@@ -67,6 +67,16 @@ namespace SI {
     const float LIVES_START_POS_X   = 0.05;
     const float LIVES_START_POS_Y   = 0.01;
     const float LIVES_SPACING       = 0.03;
+
+    // score
+    const int SCORE_SIZE            = 40;
+    const float SCORE_SPACING = 0.1;
+    const float SCORE_START_POS_X   = 3 * (LIVES_WIDTH + LIVES_SPACING) + LIVES_START_POS_X + SCORE_SPACING ;
+    const float SCORE_START_POS_Y   = 0.01;
+    const int SCORE_HIT_PLAYER      = -500;
+    const int SCORE_HIT_ENEMY       = 500;
+    const int SCORE_HIT_PROJECTILE  = 100;
+    const int SCORE_END_GAME        = -5000;
 }
 
 #endif //SPACE_INVADORS_GAMECONSTANTS_H

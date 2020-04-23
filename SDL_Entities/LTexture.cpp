@@ -138,8 +138,18 @@ void SDL_SI::LTexture::free()
     }
 }
 
-void SDL_SI::LTexture::render( int x, int y, int width, int height, SDL_SI::TypeOfRender type, SDL_Rect* clip)
+void SDL_SI::LTexture::render(SDL_SI::TypeOfRender type, int x, int y, int width, int height, SDL_Rect* clip)
 {
+//    //Set rendering space and render to screen
+//    SDL_Rect renderQuad = { x, y, SDL_SI::LTexture::nWidth, SDL_SI::LTexture::nHeight}; // standard for text.
+//
+//    //Set clip rendering dimensions
+//    if( clip != nullptr )
+//    {
+//        renderQuad.w = width;
+//        renderQuad.h = height;
+//    }
+
     //Set rendering space and render to screen
     SDL_Rect renderQuad = { x, y, SDL_SI::LTexture::nWidth, SDL_SI::LTexture::nHeight}; // standard for text.
 
