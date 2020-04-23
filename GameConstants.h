@@ -7,7 +7,12 @@
 namespace SI {
     // Global constants
     enum Control {
-        IDLE, SPACE, LEFT, RIGHT, QUIT
+        IDLE, SPACE, LEFT, RIGHT, QUIT, PAUSE
+    };
+    enum GameScreen {
+        START_SCREEN,
+        END_SCREEN,
+        GAME_SCREEN
     };
 
     // Player constants
@@ -28,7 +33,7 @@ namespace SI {
                                                             // de vorige sprite is ==> ik wil minimaal de ENEMY_WIDTH
                                                             // hebben zodat deze niet in elkaar zitten.
     const float ENEMY_START_POS_X   = (1 - ((ENEMY_COLUMS - 1) * ENEMY_SPACING + ENEMY_WIDTH))/2;
-    const float ENEMY_START_POS_Y   = 0.05;
+    const float ENEMY_START_POS_Y   = 0.08;
     const float ENEMY_OFFSET_BOARDERS_L = 0.5 * ENEMY_WIDTH;
     const float ENEMY_OFFSET_BOARDERS_R = ENEMY_OFFSET_BOARDERS_L + ENEMY_WIDTH;
     const int ENEMY_FIRECHANCE        = 3;
@@ -70,13 +75,17 @@ namespace SI {
 
     // score
     const int SCORE_SIZE            = 40;
-    const float SCORE_SPACING = 0.1;
+    const float SCORE_SPACING       = 0.1;
     const float SCORE_START_POS_X   = 3 * (LIVES_WIDTH + LIVES_SPACING) + LIVES_START_POS_X + SCORE_SPACING ;
     const float SCORE_START_POS_Y   = 0.01;
     const int SCORE_HIT_PLAYER      = -500;
     const int SCORE_HIT_ENEMY       = 500;
     const int SCORE_HIT_PROJECTILE  = 100;
     const int SCORE_END_GAME        = -5000;
+
+    // Pause
+    const float PAUSE_X_POS         = 0.40;
+    const float PAUSE_Y_POS         = 0.40;
 }
 
 #endif //SPACE_INVADORS_GAMECONSTANTS_H

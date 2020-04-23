@@ -22,6 +22,8 @@ namespace SI {
         virtual void clear() = 0;
         virtual void drawSprite(float, float, float, float, int) = 0;
         virtual void drawText(float, float, std::string) = 0;
+        virtual void visualizeStartScreen() = 0;
+        virtual void visualizeEndScreen(int, bool) = 0;
     };
 }
 

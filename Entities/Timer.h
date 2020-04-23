@@ -16,8 +16,10 @@ namespace SI {
         // Operators
         SI::Timer& operator=(const SI::Timer&);
 
-        virtual bool timePassed(unsigned long) = 0;
+        virtual bool timePassed() = 0;
         virtual void start() = 0;
+        virtual void paused() = 0;
+        virtual void setRequestedTime(unsigned long) = 0;
     };
 }
 

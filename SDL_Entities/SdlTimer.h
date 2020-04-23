@@ -13,6 +13,8 @@ namespace SDL_SI {
     private:
         // Variables
         Uint32 time = 0;
+        Uint32 remaining = 0;
+        Uint32 requestedPeriodMs = 0;
 
     public:
         // Constructors
@@ -24,8 +26,10 @@ namespace SDL_SI {
         SDL_SI::SdlTimer& operator=(const SDL_SI::SdlTimer&);
 
         //Methods
-        bool timePassed(unsigned long);
+        bool timePassed();
         void start();
+        void paused();
+        void setRequestedTime(unsigned long);
     };
 }
 

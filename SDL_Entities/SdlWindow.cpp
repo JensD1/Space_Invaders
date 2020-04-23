@@ -206,7 +206,7 @@ bool SDL_SI::SdlWindow::loadTextMedia()
     {
         //Render text
         SDL_Color textColor = { 255, 255, 255 };
-        if( !gTexture->loadFromRenderedText("The quick brown fox jumps over the lazy dog", textColor ))
+        if( !gTexture->loadFromRenderedText("SPACE INVADERS", textColor ))
         {
             printf( "Failed to render text texture!\n" );
             success = false;
@@ -247,4 +247,27 @@ void SDL_SI::SdlWindow::drawText(float xPos, float yPos, std::string string)
     SDL_Color textColor = { 255, 255, 255 };
     SDL_SI::SdlWindow::gTexture->loadFromRenderedText(string, textColor);
     SDL_SI::SdlWindow::gTexture->render( SDL_SI::TEXT, x, y);
+}
+
+void SDL_SI::SdlWindow::visualizeStartScreen() // todo make constants!!
+{
+    drawText(0.27, 0.2, "SPACE INVADERS");
+    drawText(0.17, 0.7, "PRESS SPACE TO START");
+    drawSprite(0.475, 0.475, SI::ENEMY_WIDTH, SI::ENEMY_HEIGHT, SDL_SI::ENEMY_SPRITE);
+    drawSprite(SI::PLAYER_START_POS_X, SI::PLAYER_START_POS_Y, 0.05, 0.05, SDL_SI::PLAYER_SPRITE);
+    drawSprite(SI::PLAYER_START_POS_X+ (SI::PLAYER_WIDTH - SI::BULLET_WIDTH)/2, 0.6, SI::BULLET_WIDTH, SI::BULLET_HEIGHT, SDL_SI::BULLET_SPRITE);
+}
+
+void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won) // todo make constants!!
+{
+    std::string string;
+    if(won){
+        string = "YOU WON!";
+    }
+    else{
+        string = "YOU LOSE";
+    }
+    drawText(0.375, 0.2, string);
+    drawText(0.325, 0.4, "SCORE:" + std::to_string(score));
+    drawText(0.17, 0.8, "PRESS SPACE TO START");
 }
