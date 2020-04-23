@@ -52,7 +52,7 @@ namespace SDL_SI {
         void free();
 
         //Renders texture at given point
-        void render(int, int, int, int, TypeOfRender, SDL_Rect *clip = nullptr);
+        void render(TypeOfRender, int, int, int= 0, int= 0, SDL_Rect *clip = nullptr);
 
         //Gets image dimensions
         int getmWidth();

@@ -69,6 +69,10 @@ std::set<SI::Control> SDL_SI::SdlEvent::handleEvent()
             controlArray.insert(SI::RIGHT);
             std::cout << "RIGHT" << std::endl;
         }
+        if(state[SDL_SCANCODE_P]){
+            controlArray.insert(SI::PAUSE);
+            std::cout << "PAUSE" << std::endl;
+        }
     }
     return controlArray;
 }

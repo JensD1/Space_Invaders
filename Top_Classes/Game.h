@@ -33,6 +33,9 @@ namespace SI {
         // aangeroepen worden zonder dat er een instantie (object) bestaat van Game.
         static Game* createGameInstance(AFactory*);
         void run();
+        void startScreen(int*, bool*, SI::Event*, SI::Window*);
+        void endScreen(int*, bool*, SI::Event*, SI::Window*, int, bool);
+        void gameScreen(int*, bool*, SI::Event*, SI::Window*, int*, bool*);
     };
 }
 

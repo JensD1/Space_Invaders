@@ -49,7 +49,9 @@ class SdlWindow: public SI::Window{
         void update();
         void clear();
         void drawSprite(float, float, float, float, int);
-        void drawText(float, float, float, float, std::string);
+        void drawText(float, float, std::string);
+        void visualizeStartScreen();
+        void visualizeEndScreen(int, bool);
     };
 }
 

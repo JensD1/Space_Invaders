@@ -15,7 +15,7 @@
 SDL_SI::SdlWindow::SdlWindow(): SI::Window()
 {
     assert(SDL_SI::SdlWindow::init()); // zorg dat init correct voltooid kan worden!
-    SDL_SI::SdlWindow::gFont = TTF_OpenFont( "../Media/lazy.ttf", 28 );
+    SDL_SI::SdlWindow::gFont = TTF_OpenFont( "../Media/aAbsoluteEmpire.ttf", SI::SCORE_SIZE );
     SDL_SI::SdlWindow::gTexture = new SDL_SI::LTexture(SDL_SI::SdlWindow::gRenderer, SDL_SI::SdlWindow::gFont);
     assert(SDL_SI::SdlWindow::loadSpriteMedia()); // zorg ervoor dat de sprite images worden ingeladen.
     assert(SDL_SI::SdlWindow::loadTextMedia()); // zorg ervoor dat de Text wordt ingeladen.
@@ -176,16 +176,16 @@ bool SDL_SI::SdlWindow::loadSpriteMedia()
         SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PROJECTILE_SPRITE].h = 7;
 
         // PBonus
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].x = 118;
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].y = 4;
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].w = 5;
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].h = 7;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].x = 152;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].y = 2;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].w = 34;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::PBONUS_SPRITE].h = 36;
 
         // NBonus
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].x = 118;
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].y = 19;
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].w = 5;
-        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].h = 7;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].x = 154;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].y = 39;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].w = 30;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].h = 32;
     }
 
     return success;
@@ -206,7 +206,7 @@ bool SDL_SI::SdlWindow::loadTextMedia()
     {
         //Render text
         SDL_Color textColor = { 255, 255, 255 };
-        if( !gTexture->loadFromRenderedText("The quick brown fox jumps over the lazy dog", textColor ))
+        if( !gTexture->loadFromRenderedText("SPACE INVADERS", textColor ))
         {
             printf( "Failed to render text texture!\n" );
             success = false;
@@ -236,17 +236,38 @@ void SDL_SI::SdlWindow::drawSprite(float xPos, float yPos, float tempWidth, floa
     int y = yPos * SDL_SI::SCREEN_HEIGHT;
     int width = tempWidth * SDL_SI::SCREEN_WIDTH;
     int height = tempHeight * SDL_SI::SCREEN_HEIGHT;
-    SDL_SI::SdlWindow::gTexture->render(x, y, width, height, SDL_SI::SPRITE, &SDL_SI::SdlWindow::gSpriteClips[type]);
+    SDL_SI::SdlWindow::gTexture->render(SDL_SI::SPRITE, x, y, width, height, &SDL_SI::SdlWindow::gSpriteClips[type]);
 }
 
-void SDL_SI::SdlWindow::drawText(float xPos, float yPos, float tempWidth, float tempHeight, std::string string)
+void SDL_SI::SdlWindow::drawText(float xPos, float yPos, std::string string)
 {
     //Render top left sprite
     int x = xPos * SDL_SI::SCREEN_WIDTH;
     int y = yPos * SDL_SI::SCREEN_HEIGHT;
-    int width = tempWidth * SDL_SI::SCREEN_WIDTH;
-    int height = tempHeight * SDL_SI::SCREEN_HEIGHT;
     SDL_Color textColor = { 255, 255, 255 };
     SDL_SI::SdlWindow::gTexture->loadFromRenderedText(string, textColor);
-    SDL_SI::SdlWindow::gTexture->render(x, y, width, height, SDL_SI::TEXT);
+    SDL_SI::SdlWindow::gTexture->render( SDL_SI::TEXT, x, y);
+}
+
+void SDL_SI::SdlWindow::visualizeStartScreen() // todo make constants!!
+{
+    drawText(0.27, 0.2, "SPACE INVADERS");
+    drawText(0.17, 0.7, "PRESS SPACE TO START");
+    drawSprite(0.475, 0.475, SI::ENEMY_WIDTH, SI::ENEMY_HEIGHT, SDL_SI::ENEMY_SPRITE);
+    drawSprite(SI::PLAYER_START_POS_X, SI::PLAYER_START_POS_Y, 0.05, 0.05, SDL_SI::PLAYER_SPRITE);
+    drawSprite(SI::PLAYER_START_POS_X+ (SI::PLAYER_WIDTH - SI::BULLET_WIDTH)/2, 0.6, SI::BULLET_WIDTH, SI::BULLET_HEIGHT, SDL_SI::BULLET_SPRITE);
+}
+
+void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won) // todo make constants!!
+{
+    std::string string;
+    if(won){
+        string = "YOU WON!";
+    }
+    else{
+        string = "YOU LOSE";
+    }
+    drawText(0.375, 0.2, string);
+    drawText(0.325, 0.4, "SCORE:" + std::to_string(score));
+    drawText(0.17, 0.8, "PRESS SPACE TO START");
 }

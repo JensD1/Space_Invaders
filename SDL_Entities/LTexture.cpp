@@ -9,7 +9,6 @@
 
 SDL_SI::LTexture::LTexture(SDL_Renderer* gRenderer, TTF_Font* gFont)
 {
-    SDL_SI::LTexture::free();
     //Initialize
     mTexture = nullptr;
     mWidth = 0;
@@ -138,7 +137,7 @@ void SDL_SI::LTexture::free()
     }
 }
 
-void SDL_SI::LTexture::render( int x, int y, int width, int height, SDL_SI::TypeOfRender type, SDL_Rect* clip)
+void SDL_SI::LTexture::render(SDL_SI::TypeOfRender type, int x, int y, int width, int height, SDL_Rect* clip)
 {
     //Set rendering space and render to screen
     SDL_Rect renderQuad = { x, y, SDL_SI::LTexture::nWidth, SDL_SI::LTexture::nHeight}; // standard for text.
@@ -156,6 +155,10 @@ void SDL_SI::LTexture::render( int x, int y, int width, int height, SDL_SI::Type
     }
     else if(type == SDL_SI::TEXT){
         SDL_RenderCopy(SDL_SI::LTexture::gRenderer, SDL_SI::LTexture::nTexture, clip, &renderQuad);
+        SDL_DestroyTexture( SDL_SI::LTexture::nTexture );
+        SDL_SI::LTexture::nTexture = nullptr;
+        SDL_SI::LTexture::nWidth = 0;
+        SDL_SI::LTexture::nHeight = 0;
     }
 }
 

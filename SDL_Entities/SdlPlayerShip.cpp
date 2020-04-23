@@ -11,9 +11,7 @@
 //
 SDL_SI::SdlPlayerShip::SdlPlayerShip(float xPos, float yPos, float width, float height, float dx, float dy) : SI::PlayerShip(xPos, yPos, width, height, dx, dy)
 {
-    j = 0;
     std::cout << "SdlPlayerShip created" << std::endl;
-
 }
 
 SDL_SI::SdlPlayerShip::~SdlPlayerShip()
@@ -48,6 +46,10 @@ void SDL_SI::SdlPlayerShip::visualize(SI::Window* window)
         window->drawSprite(SI::LIVES_START_POS_X + i * (SI::LIVES_WIDTH + SI::LIVES_SPACING), SI::LIVES_START_POS_Y,
                 SI::LIVES_WIDTH, SI::LIVES_HEIGHT, SDL_SI::PLAYER_SPRITE);
     }
-    window->drawText(0.5,0.5,0.1,0.1, std::to_string(j));
-    j++;
+    visualizeScore(window);
+}
+
+void SDL_SI::SdlPlayerShip::visualizeScore(SI::Window* window)
+{
+    window->drawText(SI::SCORE_START_POS_X,SI::SCORE_START_POS_Y, "Score: " + std::to_string(SDL_SI::SdlPlayerShip::getScore()));
 }
