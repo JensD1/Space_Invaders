@@ -56,6 +56,7 @@ void SI::Game::run() //todo correct the inherritance aka remove the playerEntity
     //
     // Window
     SI::Window* window = SI::Game::aFactory->createWindow();
+    SI::Sound* sound = SI::Game::aFactory->createSound();
     int currentScreen = SI::START_SCREEN;
 
     // events
@@ -76,11 +77,14 @@ void SI::Game::run() //todo correct the inherritance aka remove the playerEntity
         if (currentScreen == SI::START_SCREEN) {
             SI::Game::startScreen(&currentScreen, &quit, event, window);
         } else if (currentScreen == SI::GAME_SCREEN) {
-            SI::Game::gameScreen(&currentScreen, &quit, event, window, &score, &won); // This will be ran at least 1 time before startedGame will be set to true ==> we have everything initialised for sure.
+            SI::Game::gameScreen(&currentScreen, &quit, event, window, sound, &score, &won); // This will be ran at least 1 time before startedGame will be set to true ==> we have everything initialised for sure.
         } else {
             SI::Game::endScreen(&currentScreen, &quit, event, window, score, won);
         }
     }
+    delete event;
+    delete sound;
+    delete window;
 }
 
 void SI::Game::startScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window)
@@ -130,7 +134,7 @@ void SI::Game::endScreen(int* currentScreen, bool* quit, SI::Event* event, SI::W
     }
 }
 
-void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window, int* score, bool* won) {
+void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window, SI::Sound* sound, int* score, bool* won) {
     //
     //----------------------------------------------Init------------------------------------------------------------
     //
@@ -205,6 +209,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                 bullet->setYPos(player->getYPos() + SI::BULLET_DISTANCE_PLAYER);
                 bullet->setXPos(player->getXPos() + SI::PLAYER_WIDTH / 2 - SI::BULLET_WIDTH / 2);
                 bullet->setBulletShot(true);
+                sound->playBulletShot();
             }
         }
         if (controls.find(SI::QUIT) != controls.end()) {
@@ -213,9 +218,11 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
         if (controls.find(SI::PAUSE) != controls.end()){
             if(pause){
                 pause = false;
+                sound->resumeMusic();
             }
             else {
                 pause = true;
+                sound->pauseMusic();
             }
         }
 
@@ -314,6 +321,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                                     enemy->getXPos() + SI::ENEMY_WIDTH / 2 - SI::PROJECTILE_WIDTH / 2);
                             tempProjectile->setIsFired(true);
                             enemyTimer->start();
+                            sound->playProjectileShot();
                             projectilesFired++;
                         }
                     }
@@ -342,6 +350,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                         delete (*enemyIt);
                         enemyIt = enemies.erase(enemyIt);
                         *score += SI::SCORE_HIT_ENEMY;
+                        sound->playExplosion();
                         if (!pbonus->getActive()) {
                             bullet->hasCollision();
                         }
@@ -358,6 +367,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                     *score += SI::SCORE_END_GAME;
                     *currentScreen = SI::END_SCREEN;
                     *won = false;
+                    sound->playExplosion();
                 }
                 ++enemyIt;
             }
@@ -387,6 +397,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             }
             if (playerCollision) // This goes further on the previous
             {
+                sound->playExplosion();
                 player->hasCollision();
                 projectilesFired = 0;
                 for (SI::Projectile *projectile: projectiles) {
@@ -400,11 +411,13 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             if (pbonus->detectCollision(player)) {
                 pbonus->hasCollision();
                 pbonusTimer->start();
+                sound->playBonus();
             }
             //Player with NBonus
             if (nbonus->detectCollision(player)) {
                 nbonus->hasCollision();
                 nbonusTimer->start();
+                sound->playBonus();
             }
 
             //
