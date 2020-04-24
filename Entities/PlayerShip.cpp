@@ -11,7 +11,6 @@
 SI::PlayerShip::PlayerShip(float xPos, float yPos, float width, float height, float dx, float dy) : SI::PlayerEntity(xPos, yPos, width, height, dx, dy)
 {
     SI::PlayerShip::lives = 3;
-    SI::PlayerShip::score = 0;
     std::cout << "PlayerShip created" << std::endl;
 }
 
@@ -71,19 +70,4 @@ int SI::PlayerShip::getLives()
 void SI::PlayerShip::setLives(int lives)
 {
     SI::PlayerShip::lives = lives;
-}
-
-int SI::PlayerShip::getScore()
-{
-    return SI::PlayerShip::score;
-}
-
-void SI::PlayerShip::setScore(int score)
-{
-    SI::PlayerShip::score = score;
-}
-
-void SI::PlayerShip::addScore(int score)
-{
-    SI::PlayerShip::score += score;
 }

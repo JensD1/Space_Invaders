@@ -52,5 +52,5 @@ void SI::EnemyShip::hasCollision()
 }
 
 bool SI::EnemyShip::fireProjectile() {
-    return (rand() % 100) < SI::ENEMY_FIRECHANCE;
+    return (rand() % 10000) < SI::ENEMY_FIRECHANCE;
 }

@@ -177,6 +177,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
     int projectilesFired = 0;
     char directionEnemies = 'R';
     bool pause = false;
+    *score = 0;
 
     //
     //-------------------------------------------------Game_Loop--------------------------------------------------------
@@ -340,7 +341,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                     if ((*enemyIt)->detectCollision(bullet)) {
                         delete (*enemyIt);
                         enemyIt = enemies.erase(enemyIt);
-                        player->addScore(SI::SCORE_HIT_ENEMY);
+                        *score += SI::SCORE_HIT_ENEMY;
                         if (!pbonus->getActive()) {
                             bullet->hasCollision();
                         }
@@ -354,7 +355,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             enemyIt = enemies.begin();
             while (enemyIt != enemies.end()) {
                 if ((*enemyIt)->detectCollision(player)) {
-                    player->addScore(SI::SCORE_END_GAME);
+                    *score += SI::SCORE_END_GAME;
                     *currentScreen = SI::END_SCREEN;
                     *won = false;
                 }
@@ -367,7 +368,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                     if (projectile->detectCollision(bullet)) {
                         projectile->hasCollision();
                         projectilesFired--;
-                        player->addScore(SI::SCORE_HIT_PROJECTILE);
+                        *score += SI::SCORE_HIT_PROJECTILE;
                         if (!pbonus->getActive()) {
                             bullet->hasCollision();
                         }
@@ -381,7 +382,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                             !playerCollision; i++) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
                 if (projectiles[i]->detectCollision(player)) {
                     playerCollision = true;
-                    player->addScore(SI::SCORE_HIT_PLAYER);
+                    *score += SI::SCORE_HIT_PLAYER;
                 }
             }
             if (playerCollision) // This goes further on the previous
@@ -424,6 +425,9 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
 
         // clear the window
         window->clear();
+
+        // score
+        window->visualizeScore(*score);
 
         // Player
         player->visualize(window);
@@ -487,7 +491,6 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
         fpsTimer->start();
 
     }
-    *score = player->getScore();
 
     //
     //------------------------------------------------Free_Memory-----------------------------------------------------\\

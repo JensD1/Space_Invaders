@@ -12,7 +12,6 @@ namespace SI {
     class PlayerShip : public PlayerEntity {
     protected:
         int lives;
-        int score;
     public:
         // Constructors
         PlayerShip(float, float, float, float, float, float);
@@ -28,9 +27,6 @@ namespace SI {
         virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void hasCollision();
-        void setScore(int);
-        int getScore();
-        void addScore(int);
     };
 }
 
