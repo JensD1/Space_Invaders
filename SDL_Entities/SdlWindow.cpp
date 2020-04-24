@@ -186,6 +186,12 @@ bool SDL_SI::SdlWindow::loadSpriteMedia()
         SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].y = 39;
         SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].w = 30;
         SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].h = 32;
+
+        // Title
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].x = 0;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].y = 544;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].w = 1280;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].h = 700;
     }
 
     return success;
@@ -251,11 +257,16 @@ void SDL_SI::SdlWindow::drawText(float xPos, float yPos, std::string string)
 
 void SDL_SI::SdlWindow::visualizeStartScreen() // todo make constants!!
 {
-    SDL_SI::SdlWindow::drawText(0.27, 0.2, "SPACE INVADERS");
-    SDL_SI::SdlWindow::drawText(0.17, 0.7, "PRESS SPACE TO START");
-    SDL_SI::SdlWindow::drawSprite(0.475, 0.475, SI::ENEMY_WIDTH, SI::ENEMY_HEIGHT, SDL_SI::ENEMY_SPRITE);
+//    SDL_SI::SdlWindow::drawText(0.27, 0.2, "SPACE INVADERS");
+    float titlewidth = 0.7;
+    float titleHeight = 0.5;
+    float titlex = 0.5-titlewidth/2;
+    float titley = 0.02;
+    SDL_SI::SdlWindow::drawSprite(titlex, titley, titlewidth, titleHeight, SDL_SI::TITLE_SPRITE);
+    SDL_SI::SdlWindow::drawText(0.17, 0.8, "PRESS SPACE TO START");
+    SDL_SI::SdlWindow::drawSprite(0.475, 0.55, SI::ENEMY_WIDTH, SI::ENEMY_HEIGHT, SDL_SI::ENEMY_SPRITE);
     SDL_SI::SdlWindow::drawSprite(SI::PLAYER_START_POS_X, SI::PLAYER_START_POS_Y, 0.05, 0.05, SDL_SI::PLAYER_SPRITE);
-    SDL_SI::SdlWindow::drawSprite(SI::PLAYER_START_POS_X+ (SI::PLAYER_WIDTH - SI::BULLET_WIDTH)/2, 0.6, SI::BULLET_WIDTH, SI::BULLET_HEIGHT, SDL_SI::BULLET_SPRITE);
+    SDL_SI::SdlWindow::drawSprite(SI::PLAYER_START_POS_X+ (SI::PLAYER_WIDTH - SI::BULLET_WIDTH)/2, 0.7, SI::BULLET_WIDTH, SI::BULLET_HEIGHT, SDL_SI::BULLET_SPRITE);
 }
 
 void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won) // todo make constants!!
