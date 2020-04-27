@@ -17,9 +17,9 @@ namespace SDL_SI {
 
         // Methods
         SI::PlayerShip* createPlayerShip(float, float, float, float, float, float);
-        SI::Bullet* createBullet(float, float, float, float, float, float);
+        SI::ReusableEntity* createBullet(float, float, float, float, float, float);
         SI::EnemyShip* createEnemyShip(float, float, float, float, float, float);
-        SI::Projectile* createProjectile(float, float, float, float, float, float);
+        SI::ReusableEntity* createProjectile(float, float, float, float, float, float);
         SI::BonusEntity* createPBonus(float, float, float, float, float, float);
         SI::BonusEntity* createNBonus(float, float, float, float, float, float);
         SI::Event* createEvent();

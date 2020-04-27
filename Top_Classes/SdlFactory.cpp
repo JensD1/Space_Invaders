@@ -42,7 +42,7 @@ SI::PlayerShip* SDL_SI::SdlFactory::createPlayerShip(float xPos, float yPos, flo
     return new SdlPlayerShip(xPos, yPos, width, height, dx, dy);
 }
 
-SI::Bullet* SDL_SI::SdlFactory::createBullet(float xPos, float yPos, float width, float height, float dx, float dy)
+SI::ReusableEntity* SDL_SI::SdlFactory::createBullet(float xPos, float yPos, float width, float height, float dx, float dy)
 {
     return new SdlBullet(xPos, yPos, width, height, dx, dy);
 }
@@ -52,7 +52,7 @@ SI::EnemyShip* SDL_SI::SdlFactory::createEnemyShip(float xPos, float yPos, float
     return new SdlEnemyShip(xPos, yPos, width, height, dx, dy);
 }
 
-SI::Projectile* SDL_SI::SdlFactory::createProjectile(float xPos, float yPos, float width, float height, float dx, float dy)
+SI::ReusableEntity* SDL_SI::SdlFactory::createProjectile(float xPos, float yPos, float width, float height, float dx, float dy)
 {
     return new SdlProjectile(xPos, yPos, width, height, dx, dy);
 }

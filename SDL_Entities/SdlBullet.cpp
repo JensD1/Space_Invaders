@@ -9,17 +9,17 @@
 //
 // Constructors---------------------------------------------------------------------------------------------------------
 //
-SDL_SI::SdlBullet::SdlBullet(float xPos, float yPos, float width, float height, float dx, float dy) : SI::Bullet(xPos, yPos, width, height, dx, dy)
+SDL_SI::SdlBullet::SdlBullet(float xPos, float yPos, float width, float height, float dx, float dy) : SI::ReusableEntity(xPos, yPos, width, height, dx, dy)
 {
     std::cout << "SdlBullet created" << std::endl;
 }
 
 SDL_SI::SdlBullet::~SdlBullet()
 {
-    std::cout << "SdlBullet destroyed" << std::endl; // Let op window moet nog niet vernietigd worden! Anders is bij elke Bullet dat gedestruct wordt heel het scherm weg!
+    std::cout << "SdlBullet destroyed" << std::endl; // Let op window moet nog niet vernietigd worden! Anders is bij elke ReusableEntity dat gedestruct wordt heel het scherm weg!
 }
 
-SDL_SI::SdlBullet::SdlBullet(const SDL_SI::SdlBullet& other): SI::Bullet(other)
+SDL_SI::SdlBullet::SdlBullet(const SDL_SI::SdlBullet& other): SI::ReusableEntity(other)
 {
     std::cout << "SdlBullet copied" << std::endl;
 }
@@ -30,7 +30,7 @@ SDL_SI::SdlBullet::SdlBullet(const SDL_SI::SdlBullet& other): SI::Bullet(other)
 SDL_SI::SdlBullet& SDL_SI::SdlBullet::operator=(const SDL_SI::SdlBullet& other)
 {
     if(this != &other){
-        SI::Bullet::operator=(other);
+        SI::ReusableEntity::operator=(other);
     }
     std::cout << "SdlBullet assigned" << std::endl;
     return *this;

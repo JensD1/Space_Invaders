@@ -5,10 +5,10 @@
 #ifndef SPACE_INVADORS_SDLPROJECTILE_H
 #define SPACE_INVADORS_SDLPROJECTILE_H
 
-#include "../Entities/Projectile.h"
+#include "../Entities/ReusableEntity.h"
 
 namespace SDL_SI {
-    class SdlProjectile : public SI::Projectile {
+    class SdlProjectile : public SI::ReusableEntity {
     public:
         // Constructors
         SdlProjectile(float, float, float, float, float, float);
