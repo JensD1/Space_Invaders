@@ -8,7 +8,7 @@
 //
 // Constructors---------------------------------------------------------------------------------------------------------
 //
-SI::Projectile::Projectile(float xPos, float yPos, float width, float height, float dx, float dy) : SI::EnemyEntity(xPos, yPos, width, height, dx, dy)
+SI::Projectile::Projectile(float xPos, float yPos, float width, float height, float dx, float dy) : SI::Entity(xPos, yPos, width, height, dx, dy)
 {
     SI::Projectile::isFired = false;
     std::cout << "Projectile created" << std::endl;
@@ -19,7 +19,7 @@ SI::Projectile::~Projectile()
     std::cout << "Projectile destroyed" << std::endl;
 }
 
-SI::Projectile::Projectile(const SI::Projectile& other): SI::EnemyEntity(other)
+SI::Projectile::Projectile(const SI::Projectile& other): SI::Entity(other)
 {
     std::cout << "Projectile copied" << std::endl;
 }
@@ -30,7 +30,7 @@ SI::Projectile::Projectile(const SI::Projectile& other): SI::EnemyEntity(other)
 SI::Projectile& SI::Projectile::operator=(const SI::Projectile& other)
 {
     if(this != &other){
-        SI::EnemyEntity::operator=(other);
+        SI::Entity::operator=(other);
     }
     std::cout << "Projectile assigned" << std::endl;
     return *this;

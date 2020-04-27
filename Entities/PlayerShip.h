@@ -5,11 +5,11 @@
 #ifndef SPACE_INVADORS_PLAYERSHIP_H
 #define SPACE_INVADORS_PLAYERSHIP_H
 
-#include "PlayerEntity.h"
+#include "Entity.h"
 #include "Window.h"
 
 namespace SI {
-    class PlayerShip : public PlayerEntity {
+    class PlayerShip : public Entity {
     protected:
         int lives;
     public:

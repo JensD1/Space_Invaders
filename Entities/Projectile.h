@@ -5,10 +5,10 @@
 #ifndef SPACE_INVADORS_PROJECTILE_H
 #define SPACE_INVADORS_PROJECTILE_H
 
-#include "EnemyEntity.h"
+#include "Entity.h"
 
 namespace SI {
-    class Projectile : public SI::EnemyEntity {
+    class Projectile : public SI::Entity {
     private:
         bool isFired;
     public:

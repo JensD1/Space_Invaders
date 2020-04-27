@@ -28,10 +28,6 @@ SET(SRC
         Entities/NBonus.h
         Entities/Entity.cpp
         Entities/Entity.h
-        Entities/PlayerEntity.cpp
-        Entities/PlayerEntity.h
-        Entities/EnemyEntity.cpp
-        Entities/EnemyEntity.h
         Entities/BonusEntity.cpp
         Entities/BonusEntity.h
         SDL_Entities/SdlPlayerShip.cpp

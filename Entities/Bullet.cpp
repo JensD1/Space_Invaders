@@ -8,7 +8,7 @@
 //
 // Constructors---------------------------------------------------------------------------------------------------------
 //
-SI::Bullet::Bullet(float xPos, float yPos, float width, float height, float dx, float dy) : SI::PlayerEntity(xPos, yPos, width, height, dx, dy)
+SI::Bullet::Bullet(float xPos, float yPos, float width, float height, float dx, float dy) : SI::Entity(xPos, yPos, width, height, dx, dy)
 {
     SI::Bullet::bulletShot = false;
     std::cout << "Bullet created" << std::endl;
@@ -19,7 +19,7 @@ SI::Bullet::~Bullet()
     std::cout << "Bullet destroyed" << std::endl;
 }
 
-SI::Bullet::Bullet(const Bullet& other): SI::PlayerEntity(other)
+SI::Bullet::Bullet(const Bullet& other): SI::Entity(other)
 {
     std::cout << "Bullet copied" << std::endl;
 }
@@ -30,7 +30,7 @@ SI::Bullet::Bullet(const Bullet& other): SI::PlayerEntity(other)
 SI::Bullet& SI::Bullet::operator=(const SI::Bullet& other)
 {
     if(this != &other){
-        SI::PlayerEntity::operator=(other);
+        SI::Entity::operator=(other);
     }
     std::cout << "Bullet assigned" << std::endl;
     return *this;

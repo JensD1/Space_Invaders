@@ -5,9 +5,9 @@
 #ifndef SPACE_INVADORS_BULLET_H
 #define SPACE_INVADORS_BULLET_H
 
-#include "PlayerEntity.h"
+#include "Entity.h"
 namespace SI {
-    class Bullet : public PlayerEntity {
+    class Bullet : public Entity {
     private:
         bool bulletShot;
     public:
