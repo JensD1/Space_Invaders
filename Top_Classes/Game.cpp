@@ -49,6 +49,12 @@ SI::Game* SI::Game::createGameInstance(SI::AFactory* aFactory)
     return SI::Game::game;
 }
 
+void SI::Game::deleteGameInstance() {
+    delete SI::Game::game;
+    SI::Game::game = nullptr;
+}
+
+
 void SI::Game::run() //todo correct the inherritance aka remove the playerEntity etc and make new ones.
 {
     //
@@ -521,6 +527,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
         projectileIt = projectiles.erase(projectileIt);
     }
 }
+
 
 
 

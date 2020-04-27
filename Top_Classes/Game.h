@@ -20,18 +20,17 @@ namespace SI {
         // Constructors
         Game(AFactory*);
         Game(const Game&);
+        ~Game();
 
         // Operators
         Game& operator=(const Game&);
 
     public:
-        // Constructors
-        ~Game();
-
         // Methods
         // Deze createGameInstance method moet static zijn zodat deze methode een klasse methode wordt ==> deze methode kan
         // aangeroepen worden zonder dat er een instantie (object) bestaat van Game.
         static Game* createGameInstance(AFactory*);
+        static void deleteGameInstance();
         void run();
         void startScreen(int*, bool*, SI::Event*, SI::Window*);
         void endScreen(int*, bool*, SI::Event*, SI::Window*, int, bool);
