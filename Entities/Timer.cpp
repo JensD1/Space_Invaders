@@ -5,6 +5,9 @@
 #include "Timer.h"
 #include <iostream>
 
+//
+// ------------------------------------------------------Constructors---------------------------------------------------
+//
 SI::Timer::Timer()
 {
     std::cout << "Timer created." << std::endl;
@@ -20,6 +23,9 @@ SI::Timer::Timer(const SI::Timer& other)
     std::cout << "Timer copied." << std::endl;
 }
 
+//
+// ---------------------------------------------------Operators---------------------------------------------------------
+//
 SI::Timer& SI::Timer::operator=(const SI::Timer& other)
 {
     if(this != &other)

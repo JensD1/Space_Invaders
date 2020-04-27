@@ -6,12 +6,11 @@
 #include <iostream>
 
 //
-// Constructors---------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------Constructors---------------------------------------------------
 //
 
 SI::Event::Event()
 {
-    SI::Event::control = IDLE;
     std::cout << "Event created." << std::endl;
 }
 
@@ -22,32 +21,15 @@ SI::Event::~Event()
 
 SI::Event::Event(const SI::Event& other)
 {
-    Event::control = other.getControl();
     std::cout << "Event copied." << std::endl;
 }
 
 //
-// Getters--------------------------------------------------------------------------------------------------------------
-//
-SI::Control SI::Event::getControl() const
-{
-    return SI::Event::control;
-}
-
-//
-// Setters--------------------------------------------------------------------------------------------------------------
-//
-void SI::Event::setControl(SI::Control control)
-{
-    SI::Event::control = control;
-}
-
-//
-// Operators------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------Operators---------------------------------------------------------
 //
 SI::Event &SI::Event::operator=(const SI::Event& other) {
     if(this != &other){
-        SI::Event::control = other.getControl();
+        // nothing to do
     }
     std::cout << "Event Destroyed." << std::endl;
     return *this;

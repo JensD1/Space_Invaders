@@ -7,7 +7,7 @@
 #include <ctime>
 
 //
-// Constructors---------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------Constructors---------------------------------------------------
 //
 SI::EnemyShip::EnemyShip(float xPos, float yPos, float width, float height, float dx, float dy) : SI::Entity(xPos, yPos, width, height, dx, dy)
 {
@@ -26,7 +26,7 @@ SI::EnemyShip::EnemyShip(const EnemyShip& other): SI::Entity(other)
 }
 
 //
-// Operators------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------Operators---------------------------------------------------------
 //
 SI::EnemyShip& SI::EnemyShip::operator=(const SI::EnemyShip& other)
 {
@@ -38,8 +38,12 @@ SI::EnemyShip& SI::EnemyShip::operator=(const SI::EnemyShip& other)
 }
 
 //
-// Methods------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------Methods----------------------------------------------------------
 //
+/**
+ * Calculates the chance of firing a projectile.
+ * @return true if a new projectile is fired, false if there's not a projectile fired.
+ */
 bool SI::EnemyShip::fireProjectile() {
-    return (rand() % 10000) < SI::ENEMY_FIRECHANCE;
+    return (rand() % 10000) < SI::ENEMY_FIRECHANCE; // The chance is on 10000 and can be adjusted in GameConstants.h
 }
