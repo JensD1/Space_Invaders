@@ -38,17 +38,6 @@ SI::Bullet& SI::Bullet::operator=(const SI::Bullet& other)
 //
 // Methods------------------------------------------------------------------------------------------------------------
 //
-void SI::Bullet::updatePosition()
-{
-    SI::Bullet::setYPos(SI::Bullet::getYPos() + SI::Bullet::getDy());
-    if(SI::Bullet::getYPos() < 0){
-        SI::Bullet::setDy(0);
-        SI::Bullet::setYPos(-1);
-        SI::Bullet::setXPos(0.5);
-        SI::Bullet::setInField(false);
-    }
-}
-
 void SI::Bullet::hasCollision()
 {
     SI::Bullet::setDy(0);

@@ -9,6 +9,5 @@ int main(int argc, char* args[]) {
     SI::Game* game = SI::Game::createGameInstance(aFactory);
     game->run();
     SI::Game::deleteGameInstance(); // game zal afactory ook deleten in destructor.
-    delete aFactory;
     return 0;
 }

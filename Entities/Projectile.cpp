@@ -38,11 +38,6 @@ SI::Projectile& SI::Projectile::operator=(const SI::Projectile& other)
 //
 // Methods------------------------------------------------------------------------------------------------------------
 //
-void SI::Projectile::updatePosition()
-{
-    SI::Projectile::setYPos(SI::Projectile::getYPos() + SI::Projectile::getDy());
-}
-
 void SI::Projectile::hasCollision()
 {
     SI::Projectile::setDy(0);

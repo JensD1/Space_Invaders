@@ -21,7 +21,6 @@ namespace SI {
 
         // Methods
         virtual void visualize(SI::Window*) = 0;
-        virtual void updatePosition() = 0;
         void resetPosition();
         virtual void hasCollision() = 0;
         bool getInField();

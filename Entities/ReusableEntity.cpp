@@ -51,5 +51,6 @@ void SI::ReusableEntity::resetPosition()
     SI::ReusableEntity::setYPos(SI::OUT_OF_SCREEN);
     SI::ReusableEntity::setXPos(SI::OUT_OF_SCREEN);
     SI::ReusableEntity::setDy(0);
+    SI::ReusableEntity::setDx(0);
     SI::ReusableEntity::setInField(false);
 }

@@ -40,12 +40,6 @@ SI::EnemyShip& SI::EnemyShip::operator=(const SI::EnemyShip& other)
 //
 // Methods------------------------------------------------------------------------------------------------------------
 //
-void SI::EnemyShip::updatePosition()
-{
-    SI::EnemyShip::setXPos(SI::EnemyShip::getXPos() + SI::EnemyShip::getDx());
-    SI::EnemyShip::setYPos(SI::EnemyShip::getYPos() + SI::EnemyShip::getDy());
-}
-
 void SI::EnemyShip::hasCollision()
 {
 

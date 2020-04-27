@@ -37,17 +37,6 @@ SI::BonusEntity& SI::BonusEntity::operator=(const SI::BonusEntity& other)
     return *this;
 }
 
-void SI::BonusEntity::updatePosition()
-{
-    float temp = SI::BonusEntity::getYPos() + SI::BonusEntity::getDy();
-    if(temp > 1){ // als je uit het scherm gaat.
-        SI::BonusEntity::resetPosition();
-    }
-    else{
-        SI::BonusEntity::setYPos(temp);
-    }
-}
-
 void SI::BonusEntity::spawn()
 {
     if((rand() % 10000) < SI::BONUS_SWAWN_CHANCE) {

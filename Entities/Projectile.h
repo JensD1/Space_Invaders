@@ -20,7 +20,6 @@ namespace SI {
 
         // Methods
         virtual void visualize(SI::Window*) = 0;
-        void updatePosition();
         void hasCollision();
     };
 }

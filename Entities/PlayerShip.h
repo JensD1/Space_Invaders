@@ -25,7 +25,6 @@ namespace SI {
         void setLives(int);
         int getLives();
         virtual void visualize(SI::Window*) = 0;
-        void updatePosition();
         void hasCollision();
     };
 }

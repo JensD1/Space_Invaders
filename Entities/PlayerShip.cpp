@@ -41,20 +41,6 @@ SI::PlayerShip& SI::PlayerShip::operator=(const SI::PlayerShip& other)
 //
 // Methods------------------------------------------------------------------------------------------------------------
 //
-void SI::PlayerShip::updatePosition()
-{
-    float temp = SI::PlayerShip::getXPos() + SI::PlayerShip::getDx();
-    if (temp>=0 && (temp <= 1 - SI::PLAYER_WIDTH)){
-        SI::PlayerShip::setXPos(temp);
-    }
-    else if (temp < 0){
-        SI::PlayerShip::setXPos(0);
-    }
-    else{
-        SI::PlayerShip::setXPos(1 - SI::PLAYER_WIDTH);
-    }
-}
-
 void SI::PlayerShip::hasCollision()
 {
     SI::PlayerShip::setLives(SI::PlayerShip::getLives() - 1);

@@ -23,6 +23,7 @@ SI::Game::Game(SI::AFactory* aFactory)
 
 SI::Game::~Game()
 {
+    delete SI::Game::aFactory;
     std::cout << "Game destroyed." << std::endl;
 }
 
@@ -239,10 +240,19 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
         if(!pause) {
             // Player
             player->updatePosition();
+            if (player->getXPos() < 0){
+                player->setXPos(0);
+            }
+            else if(player->getXPos() > 1 - SI::PLAYER_WIDTH){
+                player->setXPos(1 - SI::PLAYER_WIDTH);
+            }
 
             // Bullet
             if (bullet->getInField()) {
                 bullet->updatePosition();
+                if(bullet->getYPos() < 0){
+                    bullet->resetPosition();
+                }
             }
 
             // Projectile
@@ -250,7 +260,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                 if (projectile->getInField()) {
                     projectile->updatePosition();
                     if (projectile->getYPos() > 1) {
-                        projectile->hasCollision();
+                        projectile->resetPosition();
                         projectilesFired--;
                     }
                 }
@@ -294,9 +304,15 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             // Bonuses movement
             if (pbonus->getInField()) {
                 pbonus->updatePosition();
+                if(pbonus->getYPos() > 1){
+                    pbonus->resetPosition();
+                }
             }
             if (nbonus->getInField()) {
                 nbonus->updatePosition();
+                if(nbonus->getYPos() > 1){
+                    nbonus->resetPosition();
+                }
             }
 
             //
