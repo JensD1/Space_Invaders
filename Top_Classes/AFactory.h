@@ -14,6 +14,7 @@
 #include "../Entities/Event.h"
 #include "../Entities/Timer.h"
 #include "../Entities/Window.h"
+#include "../Entities/Sound.h"
 
 namespace SI {
     class AFactory {
@@ -28,6 +29,7 @@ namespace SI {
         virtual Event* createEvent() = 0;
         virtual Timer* createTimer() = 0;
         virtual Window* createWindow() = 0;
+        virtual Sound* createSound() = 0;
 
         //Constructors
         virtual ~AFactory(){};

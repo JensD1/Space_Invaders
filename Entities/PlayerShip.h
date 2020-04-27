@@ -5,14 +5,13 @@
 #ifndef SPACE_INVADORS_PLAYERSHIP_H
 #define SPACE_INVADORS_PLAYERSHIP_H
 
-#include "PlayerEntity.h"
+#include "Entity.h"
 #include "Window.h"
 
 namespace SI {
-    class PlayerShip : public PlayerEntity {
+    class PlayerShip : public Entity {
     protected:
         int lives;
-        int score;
     public:
         // Constructors
         PlayerShip(float, float, float, float, float, float);
@@ -26,11 +25,7 @@ namespace SI {
         void setLives(int);
         int getLives();
         virtual void visualize(SI::Window*) = 0;
-        void updatePosition();
         void hasCollision();
-        void setScore(int);
-        int getScore();
-        void addScore(int);
     };
 }
 

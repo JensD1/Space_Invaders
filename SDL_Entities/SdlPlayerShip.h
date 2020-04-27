@@ -20,7 +20,6 @@ namespace SDL_SI {
 
         // Methods
         void visualize(SI::Window*);
-        void visualizeScore(SI::Window*);
     };
 }
 

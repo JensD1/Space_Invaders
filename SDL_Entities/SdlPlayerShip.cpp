@@ -46,10 +46,4 @@ void SDL_SI::SdlPlayerShip::visualize(SI::Window* window)
         window->drawSprite(SI::LIVES_START_POS_X + i * (SI::LIVES_WIDTH + SI::LIVES_SPACING), SI::LIVES_START_POS_Y,
                 SI::LIVES_WIDTH, SI::LIVES_HEIGHT, SDL_SI::PLAYER_SPRITE);
     }
-    visualizeScore(window);
-}
-
-void SDL_SI::SdlPlayerShip::visualizeScore(SI::Window* window)
-{
-    window->drawText(SI::SCORE_START_POS_X,SI::SCORE_START_POS_Y, "Score: " + std::to_string(SDL_SI::SdlPlayerShip::getScore()));
 }

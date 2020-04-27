@@ -8,7 +8,6 @@ int main(int argc, char* args[]) {
     SI::AFactory* aFactory = new SDL_SI::SdlFactory();
     SI::Game* game = SI::Game::createGameInstance(aFactory);
     game->run();
-    delete game; // game zal afactory ook deleten in destructor.
-    delete aFactory;
+    SI::Game::deleteGameInstance(); // game zal afactory ook deleten in destructor.
     return 0;
 }

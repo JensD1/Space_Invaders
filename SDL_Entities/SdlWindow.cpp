@@ -6,7 +6,6 @@
 #include "../GameConstants.h"
 #include <assert.h>
 #include "SDL2/SDL_image.h"
-#include <SDL2/SDL_ttf.h>
 #include <iostream>
 
 //
@@ -186,6 +185,12 @@ bool SDL_SI::SdlWindow::loadSpriteMedia()
         SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].y = 39;
         SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].w = 30;
         SDL_SI::SdlWindow::gSpriteClips[SDL_SI::NBONUS_SPRITE].h = 32;
+
+        // Title
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].x = 0;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].y = 544;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].w = 1280;
+        SDL_SI::SdlWindow::gSpriteClips[SDL_SI::TITLE_SPRITE].h = 700;
     }
 
     return success;
@@ -251,11 +256,16 @@ void SDL_SI::SdlWindow::drawText(float xPos, float yPos, std::string string)
 
 void SDL_SI::SdlWindow::visualizeStartScreen() // todo make constants!!
 {
-    drawText(0.27, 0.2, "SPACE INVADERS");
-    drawText(0.17, 0.7, "PRESS SPACE TO START");
-    drawSprite(0.475, 0.475, SI::ENEMY_WIDTH, SI::ENEMY_HEIGHT, SDL_SI::ENEMY_SPRITE);
-    drawSprite(SI::PLAYER_START_POS_X, SI::PLAYER_START_POS_Y, 0.05, 0.05, SDL_SI::PLAYER_SPRITE);
-    drawSprite(SI::PLAYER_START_POS_X+ (SI::PLAYER_WIDTH - SI::BULLET_WIDTH)/2, 0.6, SI::BULLET_WIDTH, SI::BULLET_HEIGHT, SDL_SI::BULLET_SPRITE);
+//    SDL_SI::SdlWindow::drawText(0.27, 0.2, "SPACE INVADERS");
+    float titlewidth = 0.7;
+    float titleHeight = 0.5;
+    float titlex = 0.5-titlewidth/2;
+    float titley = 0.02;
+    SDL_SI::SdlWindow::drawSprite(titlex, titley, titlewidth, titleHeight, SDL_SI::TITLE_SPRITE);
+    SDL_SI::SdlWindow::drawText(0.17, 0.8, "PRESS SPACE TO START");
+    SDL_SI::SdlWindow::drawSprite(0.475, 0.55, SI::ENEMY_WIDTH, SI::ENEMY_HEIGHT, SDL_SI::ENEMY_SPRITE);
+    SDL_SI::SdlWindow::drawSprite(SI::PLAYER_START_POS_X, SI::PLAYER_START_POS_Y, 0.05, 0.05, SDL_SI::PLAYER_SPRITE);
+    SDL_SI::SdlWindow::drawSprite(SI::PLAYER_START_POS_X+ (SI::PLAYER_WIDTH - SI::BULLET_WIDTH)/2, 0.7, SI::BULLET_WIDTH, SI::BULLET_HEIGHT, SDL_SI::BULLET_SPRITE);
 }
 
 void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won) // todo make constants!!
@@ -267,7 +277,12 @@ void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won) // todo make con
     else{
         string = "YOU LOSE";
     }
-    drawText(0.375, 0.2, string);
-    drawText(0.325, 0.4, "SCORE:" + std::to_string(score));
-    drawText(0.17, 0.8, "PRESS SPACE TO START");
+    SDL_SI::SdlWindow::drawText(0.375, 0.2, string);
+    SDL_SI::SdlWindow::drawText(0.325, 0.4, "SCORE:" + std::to_string(score));
+    SDL_SI::SdlWindow::drawText(0.17, 0.8, "PRESS SPACE TO START");
+}
+
+void SDL_SI::SdlWindow::visualizeScore(int score)
+{
+    SDL_SI::SdlWindow::drawText(SI::SCORE_START_POS_X,SI::SCORE_START_POS_Y, "Score: " + std::to_string(score));
 }

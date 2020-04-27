@@ -25,6 +25,7 @@ namespace SDL_SI {
         SI::Event* createEvent();
         SI::Timer* createTimer();
         SI::Window* createWindow();
+        SI::Sound* createSound();
 
         // Operators
         SdlFactory& operator=(const SdlFactory&);

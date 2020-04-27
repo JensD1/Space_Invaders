@@ -160,3 +160,14 @@ void SI::Entity::setDy(float dy)
 {
     SI::Entity::dy = dy;
 }
+
+
+//
+// -------------------------------------------------------Methods-------------------------------------------------------
+//
+
+void SI::Entity::updatePosition()
+{
+    SI::Entity::setXPos(SI::Entity::getXPos() + SI::Entity::getDx());
+    SI::Entity::setYPos(SI::Entity::getYPos() + SI::Entity::getDy());
+}

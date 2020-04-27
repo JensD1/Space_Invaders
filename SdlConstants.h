@@ -16,13 +16,14 @@ namespace SDL_SI{
         PROJECTILE_SPRITE,
         BOSS_SPRITE,
         PBONUS_SPRITE,
-        NBONUS_SPRITE
+        NBONUS_SPRITE,
+        TITLE_SPRITE
     };
     enum TypeOfRender{
         SPRITE,
         TEXT
     };
-    const int NUMBER_OF_SPRITES     = 7;
+    const int NUMBER_OF_SPRITES     = 8;
 }
 
 #endif //SPACE_INVADORS_SDLCONSTANTS_H

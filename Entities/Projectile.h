@@ -5,12 +5,10 @@
 #ifndef SPACE_INVADORS_PROJECTILE_H
 #define SPACE_INVADORS_PROJECTILE_H
 
-#include "EnemyEntity.h"
+#include "ReusableEntity.h"
 
 namespace SI {
-    class Projectile : public SI::EnemyEntity {
-    private:
-        bool isFired;
+    class Projectile : public SI::ReusableEntity {
     public:
         // Constructors
         Projectile(float, float, float, float, float, float);
@@ -22,10 +20,7 @@ namespace SI {
 
         // Methods
         virtual void visualize(SI::Window*) = 0;
-        void updatePosition();
         void hasCollision();
-        bool getIsFired();
-        void setIsFired(bool);
     };
 }
 

@@ -5,11 +5,11 @@
 #ifndef SPACE_INVADORS_ENEMYSHIP_H
 #define SPACE_INVADORS_ENEMYSHIP_H
 
-#include "EnemyEntity.h"
+#include "Entity.h"
 #include <random>
 
 namespace SI {
-    class EnemyShip : public EnemyEntity {
+    class EnemyShip : public Entity {
     public:
         // Constructors
         EnemyShip(float, float, float, float, float, float);
@@ -21,7 +21,6 @@ namespace SI {
 
         // Methods
         virtual void visualize(SI::Window*) = 0;
-        void updatePosition();
         void hasCollision();
         bool fireProjectile();
     };

@@ -14,6 +14,7 @@
 #include "../SDL_Entities/SdlTimer.h"
 #include "../SDL_Entities/SdlEvent.h"
 #include "../SDL_Entities/SdlWindow.h"
+#include "../SDL_Entities/SdlSound.h"
 
 //
 // Constructors---------------------------------------------------------------------------------------------------------
@@ -81,6 +82,12 @@ SI::Window* SDL_SI::SdlFactory::createWindow()
     return new SdlWindow();
 }
 
+SI::Sound *SDL_SI::SdlFactory::createSound()
+{
+    return new SdlSound();
+}
+
+
 //
 // Operators------------------------------------------------------------------------------------------------------------
 //
@@ -92,4 +99,5 @@ SDL_SI::SdlFactory& SDL_SI::SdlFactory::operator=(const SDL_SI::SdlFactory& othe
     std::cout << "Game assigned." << std::endl;
     return *this;
 }
+
 

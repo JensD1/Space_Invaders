@@ -52,6 +52,7 @@ class SdlWindow: public SI::Window{
         void drawText(float, float, std::string);
         void visualizeStartScreen();
         void visualizeEndScreen(int, bool);
+        void visualizeScore(int);
     };
 }
 
