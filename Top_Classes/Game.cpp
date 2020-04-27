@@ -160,7 +160,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
     SI::PlayerShip *player = SI::Game::aFactory->createPlayerShip(SI::PLAYER_START_POS_X,
                                                                   SI::PLAYER_START_POS_Y, SI::PLAYER_WIDTH,
                                                                   SI::PLAYER_HEIGHT, 0, 0);
-    SI::Bullet *bullet = SI::Game::aFactory->createBullet(SI::OUT_OF_SCREEN,
+    SI::ReusableEntity *bullet = SI::Game::aFactory->createBullet(SI::OUT_OF_SCREEN,
                                                           SI::OUT_OF_SCREEN, SI::BULLET_WIDTH, SI::BULLET_HEIGHT, 0,
                                                           0);
     std::vector<SI::EnemyShip *> enemies;
@@ -172,7 +172,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                                                         SI::ENEMY_WIDTH, SI::ENEMY_HEIGHT, 0, 0));
         }
     }
-    std::vector<SI::Projectile *> projectiles;
+    std::vector<SI::ReusableEntity *> projectiles;
     projectiles.reserve(SI::MAXPROJECTILES);
     for (int i = 0; i < SI::MAXPROJECTILES; i++) {
         projectiles.push_back(
@@ -256,7 +256,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             }
 
             // Projectile
-            for (Projectile *projectile: projectiles) {
+            for (ReusableEntity *projectile: projectiles) {
                 if (projectile->getInField()) {
                     projectile->updatePosition();
                     if (projectile->getYPos() > 1) {
@@ -332,7 +332,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                     if (lowest) {
                         if (enemy->fireProjectile()) {
                             int i = 0;
-                            Projectile *tempProjectile;
+                            ReusableEntity *tempProjectile;
                             do {    // zorgen dat je een projectile neemt dat nog niet is afgevuurd.
                                 tempProjectile = projectiles[i];
                                 i++;
@@ -395,7 +395,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             }
 
             // Bullet with projectile // todo kijk na waarom het niet andersom werkt
-            for (SI::Projectile *projectile: projectiles) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
+            for (SI::ReusableEntity *projectile: projectiles) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
                 if (bullet->getInField()) {
                     if (projectile->detectCollision(bullet)) {
                         projectile->resetPosition();
@@ -424,7 +424,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                 player->setYPos(SI::PLAYER_START_POS_Y);
                 player->setXPos(SI::PLAYER_START_POS_X);
                 projectilesFired = 0;
-                for (SI::Projectile *projectile: projectiles) {
+                for (SI::ReusableEntity* projectile: projectiles) {
                     projectile->resetPosition();
                 }
                 pbonus->resetPosition();
@@ -482,7 +482,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
         }
 
         // Projectiles
-        for (SI::Projectile *projectile: projectiles) {
+        for (SI::ReusableEntity* projectile: projectiles) {
             if (projectile->getInField()) {
                 projectile->visualize(window);
             }

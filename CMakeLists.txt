@@ -16,12 +16,8 @@ SET(SRC
         Top_Classes/SdlFactory.h
         Entities/PlayerShip.cpp
         Entities/PlayerShip.h
-        Entities/Bullet.cpp
-        Entities/Bullet.h
         Entities/EnemyShip.cpp
         Entities/EnemyShip.h
-        Entities/Projectile.cpp
-        Entities/Projectile.h
         Entities/Entity.cpp
         Entities/Entity.h
         Entities/BonusEntity.cpp

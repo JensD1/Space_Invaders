@@ -5,10 +5,10 @@
 #ifndef SPACE_INVADORS_SDLBULLET_H
 #define SPACE_INVADORS_SDLBULLET_H
 
-#include "../Entities/Bullet.h"
+#include "../Entities/ReusableEntity.h"
 
 namespace SDL_SI {
-    class SdlBullet : public SI::Bullet {
+    class SdlBullet : public SI::ReusableEntity {
     public:
         // Constructors
         SdlBullet(float, float, float, float, float, float);
