@@ -9,17 +9,17 @@
 //
 // Constructors---------------------------------------------------------------------------------------------------------
 //
-SDL_SI::SdlNBonus::SdlNBonus(float xPos, float yPos, float width, float height, float dx, float dy) : SI::NBonus(xPos, yPos, width, height, dx, dy)
+SDL_SI::SdlNBonus::SdlNBonus(float xPos, float yPos, float width, float height, float dx, float dy) : SI::BonusEntity(xPos, yPos, width, height, dx, dy)
 {
     std::cout << "SdlNBonus created" << std::endl;
 }
 
 SDL_SI::SdlNBonus::~SdlNBonus()
 {
-    std::cout << "SdlNBonus destroyed" << std::endl; // Let op window moet nog niet vernietigd worden! Anders is bij elke NBonus dat gedestruct wordt heel het scherm weg!
+    std::cout << "SdlNBonus destroyed" << std::endl; // Let op window moet nog niet vernietigd worden! Anders is bij elke BonusEntity dat gedestruct wordt heel het scherm weg!
 }
 
-SDL_SI::SdlNBonus::SdlNBonus(const SDL_SI::SdlNBonus& other): SI::NBonus(other)
+SDL_SI::SdlNBonus::SdlNBonus(const SDL_SI::SdlNBonus& other): SI::BonusEntity(other)
 {
     std::cout << "SdlNBonus copied" << std::endl;
 }
@@ -30,7 +30,7 @@ SDL_SI::SdlNBonus::SdlNBonus(const SDL_SI::SdlNBonus& other): SI::NBonus(other)
 SDL_SI::SdlNBonus& SDL_SI::SdlNBonus::operator=(const SDL_SI::SdlNBonus& other)
 {
     if(this != &other){
-        SI::NBonus::operator=(other);
+        SI::BonusEntity::operator=(other);
     }
     std::cout << "SdlNBonus assigned" << std::endl;
     return *this;

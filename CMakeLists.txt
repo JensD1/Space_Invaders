@@ -22,10 +22,6 @@ SET(SRC
         Entities/EnemyShip.h
         Entities/Projectile.cpp
         Entities/Projectile.h
-        Entities/PBonus.cpp
-        Entities/PBonus.h
-        Entities/NBonus.cpp
-        Entities/NBonus.h
         Entities/Entity.cpp
         Entities/Entity.h
         Entities/BonusEntity.cpp

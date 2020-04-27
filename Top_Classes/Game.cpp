@@ -179,9 +179,9 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                 SI::Game::aFactory->createProjectile(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::PROJECTILE_WIDTH,
                                                      SI::PROJECTILE_HEIGHT, 0, 0));
     }
-    SI::PBonus *pbonus = SI::Game::aFactory->createPBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
+    SI::BonusEntity *pbonus = SI::Game::aFactory->createPBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
                                                           SI::BONUS_HEIGHT, 0, 0);
-    SI::NBonus *nbonus = SI::Game::aFactory->createNBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
+    SI::BonusEntity *nbonus = SI::Game::aFactory->createNBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
                                                           SI::BONUS_HEIGHT, 0, 0);
 
     // variabelen.

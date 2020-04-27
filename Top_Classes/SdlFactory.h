@@ -20,8 +20,8 @@ namespace SDL_SI {
         SI::Bullet* createBullet(float, float, float, float, float, float);
         SI::EnemyShip* createEnemyShip(float, float, float, float, float, float);
         SI::Projectile* createProjectile(float, float, float, float, float, float);
-        SI::PBonus* createPBonus(float, float, float, float, float, float);
-        SI::NBonus* createNBonus(float, float, float, float, float, float);
+        SI::BonusEntity* createPBonus(float, float, float, float, float, float);
+        SI::BonusEntity* createNBonus(float, float, float, float, float, float);
         SI::Event* createEvent();
         SI::Timer* createTimer();
         SI::Window* createWindow();
