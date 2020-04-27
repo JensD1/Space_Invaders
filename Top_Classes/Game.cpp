@@ -210,11 +210,11 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             player->setDx(0); // Beiden zijn ingedrukt.
         }
         if (controls.find(SI::SPACE) != controls.end()) {
-            if (!bullet->getBulletShot() && !nbonus->getActive()) {
+            if (!bullet->getInField() && !nbonus->getActive()) {
                 bullet->setDy(SI::BULLETSPEED);
                 bullet->setYPos(player->getYPos() + SI::BULLET_DISTANCE_PLAYER);
                 bullet->setXPos(player->getXPos() + SI::PLAYER_WIDTH / 2 - SI::BULLET_WIDTH / 2);
-                bullet->setBulletShot(true);
+                bullet->setInField(true);
                 sound->playBulletShot();
             }
         }
@@ -241,13 +241,13 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             player->updatePosition();
 
             // Bullet
-            if (bullet->getBulletShot()) {
+            if (bullet->getInField()) {
                 bullet->updatePosition();
             }
 
             // Projectile
             for (Projectile *projectile: projectiles) {
-                if (projectile->getIsFired()) {
+                if (projectile->getInField()) {
                     projectile->updatePosition();
                     if (projectile->getYPos() > 1) {
                         projectile->hasCollision();
@@ -320,12 +320,12 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                             do {    // zorgen dat je een projectile neemt dat nog niet is afgevuurd.
                                 tempProjectile = projectiles[i];
                                 i++;
-                            } while (tempProjectile->getIsFired() && i < projectiles.size());
+                            } while (tempProjectile->getInField() && i < projectiles.size());
                             tempProjectile->setDy(SI::PROJECTILESPEED);
                             tempProjectile->setYPos(enemy->getYPos() + SI::PROJECTILE_DISTANCE_ENEMIE);
                             tempProjectile->setXPos(
                                     enemy->getXPos() + SI::ENEMY_WIDTH / 2 - SI::PROJECTILE_WIDTH / 2);
-                            tempProjectile->setIsFired(true);
+                            tempProjectile->setInField(true);
                             enemyTimer->start();
                             sound->playProjectileShot();
                             projectilesFired++;
@@ -350,7 +350,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
 
             // Bullet with Enemy
             auto enemyIt = enemies.begin();
-            if (bullet->getBulletShot()) {
+            if (bullet->getInField()) {
                 while (enemyIt != enemies.end()) {
                     if ((*enemyIt)->detectCollision(bullet)) {
                         delete (*enemyIt);
@@ -380,7 +380,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
 
             // Bullet with projectile // todo kijk na waarom het niet andersom werkt
             for (SI::Projectile *projectile: projectiles) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
-                if (bullet->getBulletShot()) {
+                if (bullet->getInField()) {
                     if (projectile->detectCollision(bullet)) {
                         projectile->hasCollision();
                         projectilesFired--;
@@ -457,13 +457,13 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
         }
 
         // Bullets
-        if (bullet->getBulletShot()) {
+        if (bullet->getInField()) {
             bullet->visualize(window);
         }
 
         // Projectiles
         for (SI::Projectile *projectile: projectiles) {
-            if (projectile->getIsFired()) {
+            if (projectile->getInField()) {
                 projectile->visualize(window);
             }
         }

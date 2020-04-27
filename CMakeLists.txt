@@ -57,6 +57,6 @@ SET(SRC
         Entities/Timer.cpp
         Entities/Timer.h
         Entities/Window.cpp
-        Entities/Window.h Entities/Sound.cpp Entities/Sound.h SDL_Entities/SdlSound.cpp SDL_Entities/SdlSound.h)
+        Entities/Window.h Entities/Sound.cpp Entities/Sound.h SDL_Entities/SdlSound.cpp SDL_Entities/SdlSound.h Entities/ReusableEntity.cpp Entities/ReusableEntity.h)
 add_executable(Space_Invaders ${SRC} Top_Classes/main.cpp)
 target_link_libraries(Space_Invaders ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer)

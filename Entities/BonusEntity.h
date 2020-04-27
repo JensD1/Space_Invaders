@@ -5,11 +5,10 @@
 #ifndef SPACE_INVADORS_BONUSENTITY_H
 #define SPACE_INVADORS_BONUSENTITY_H
 
-#include "Entity.h"
+#include "ReusableEntity.h"
 namespace SI {
-    class BonusEntity : public Entity {
-    private:
-        bool inField;
+    class BonusEntity : public ReusableEntity {
+    protected:
         bool active;
     public:
         // Constructors
@@ -23,10 +22,7 @@ namespace SI {
         // Methods
         virtual void visualize(SI::Window*) = 0;
         void updatePosition();
-        void resetPosition();
         void hasCollision();
-        bool getInField();
-        void setInField(bool);
         bool getActive();
         void setActive(bool);
         void spawn();

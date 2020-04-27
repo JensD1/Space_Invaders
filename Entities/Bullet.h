@@ -5,11 +5,9 @@
 #ifndef SPACE_INVADORS_BULLET_H
 #define SPACE_INVADORS_BULLET_H
 
-#include "Entity.h"
+#include "ReusableEntity.h"
 namespace SI {
-    class Bullet : public Entity {
-    private:
-        bool bulletShot;
+    class Bullet : public ReusableEntity {
     public:
         // Constructors
         Bullet(float, float, float, float, float, float);
@@ -23,8 +21,6 @@ namespace SI {
         virtual void visualize(SI::Window*) = 0;
         void updatePosition();
         void hasCollision();
-        bool getBulletShot();
-        void setBulletShot(bool);
     };
 }
 
