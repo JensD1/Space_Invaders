@@ -51,12 +51,6 @@ void SI::BonusEntity::spawn()
     }
 }
 
-void SI::BonusEntity::hasCollision()
-{
-    SI::BonusEntity::resetPosition();
-    SI::BonusEntity::setActive(true);
-}
-
 bool SI::BonusEntity::getActive()
 {
     return SI::BonusEntity::active;

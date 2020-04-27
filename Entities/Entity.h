@@ -30,7 +30,6 @@ namespace SI {
         bool detectCollision(SI::Entity*);
         virtual void visualize(SI::Window*) = 0;
         void updatePosition();
-        virtual void hasCollision() = 0;
 
         // Getters
         float getXPos() const;

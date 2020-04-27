@@ -22,7 +22,6 @@ namespace SI {
         // Methods
         virtual void visualize(SI::Window*) = 0;
         void resetPosition();
-        virtual void hasCollision() = 0;
         bool getInField();
         void setInField(bool);
     };

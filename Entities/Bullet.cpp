@@ -34,14 +34,3 @@ SI::Bullet& SI::Bullet::operator=(const SI::Bullet& other)
     std::cout << "Bullet assigned" << std::endl;
     return *this;
 }
-
-//
-// Methods------------------------------------------------------------------------------------------------------------
-//
-void SI::Bullet::hasCollision()
-{
-    SI::Bullet::setDy(0);
-    SI::Bullet::setYPos(SI::OUT_OF_SCREEN);
-    SI::Bullet::setXPos(SI::OUT_OF_SCREEN);
-    SI::Bullet::setInField(false); // Bij de volgende screenupdate worden alle huidige elementen verwijderd en deze bullet wordt niet meer gevisualiseerd.
-}

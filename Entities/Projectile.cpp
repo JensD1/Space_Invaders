@@ -38,10 +38,3 @@ SI::Projectile& SI::Projectile::operator=(const SI::Projectile& other)
 //
 // Methods------------------------------------------------------------------------------------------------------------
 //
-void SI::Projectile::hasCollision()
-{
-    SI::Projectile::setDy(0);
-    SI::Projectile::setYPos(SI::OUT_OF_SCREEN);
-    SI::Projectile::setXPos(SI::OUT_OF_SCREEN);
-    SI::Projectile::setInField(false); // Bij de volgende screenupdate worden alle huidige elementen verwijderd en deze Projectile wordt niet meer gevisualiseerd.
-}

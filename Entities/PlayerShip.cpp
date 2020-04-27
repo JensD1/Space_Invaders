@@ -41,13 +41,6 @@ SI::PlayerShip& SI::PlayerShip::operator=(const SI::PlayerShip& other)
 //
 // Methods------------------------------------------------------------------------------------------------------------
 //
-void SI::PlayerShip::hasCollision()
-{
-    SI::PlayerShip::setLives(SI::PlayerShip::getLives() - 1);
-    SI::PlayerShip::setYPos(SI::PLAYER_START_POS_Y);
-    SI::PlayerShip::setXPos(SI::PLAYER_START_POS_X);
-}
-
 int SI::PlayerShip::getLives()
 {
     return SI::PlayerShip::lives;
