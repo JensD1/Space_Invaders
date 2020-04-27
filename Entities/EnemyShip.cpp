@@ -40,11 +40,6 @@ SI::EnemyShip& SI::EnemyShip::operator=(const SI::EnemyShip& other)
 //
 // Methods------------------------------------------------------------------------------------------------------------
 //
-void SI::EnemyShip::hasCollision()
-{
-
-}
-
 bool SI::EnemyShip::fireProjectile() {
     return (rand() % 10000) < SI::ENEMY_FIRECHANCE;
 }

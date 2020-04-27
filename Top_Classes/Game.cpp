@@ -179,9 +179,9 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                 SI::Game::aFactory->createProjectile(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::PROJECTILE_WIDTH,
                                                      SI::PROJECTILE_HEIGHT, 0, 0));
     }
-    SI::PBonus *pbonus = SI::Game::aFactory->createPBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
+    SI::BonusEntity *pbonus = SI::Game::aFactory->createPBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
                                                           SI::BONUS_HEIGHT, 0, 0);
-    SI::NBonus *nbonus = SI::Game::aFactory->createNBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
+    SI::BonusEntity *nbonus = SI::Game::aFactory->createNBonus(SI::OUT_OF_SCREEN, SI::OUT_OF_SCREEN, SI::BONUS_WIDTH,
                                                           SI::BONUS_HEIGHT, 0, 0);
 
     // variabelen.
@@ -374,7 +374,7 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
                         *score += SI::SCORE_HIT_ENEMY;
                         sound->playExplosion();
                         if (!pbonus->getActive()) {
-                            bullet->hasCollision();
+                            bullet->resetPosition();
                         }
                     } else {
                         ++enemyIt;
@@ -398,11 +398,11 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             for (SI::Projectile *projectile: projectiles) { // when there's a player collision, this does not need to be compleded ==> go out of for loop.
                 if (bullet->getInField()) {
                     if (projectile->detectCollision(bullet)) {
-                        projectile->hasCollision();
+                        projectile->resetPosition();
                         projectilesFired--;
                         *score += SI::SCORE_HIT_PROJECTILE;
                         if (!pbonus->getActive()) {
-                            bullet->hasCollision();
+                            bullet->resetPosition();
                         }
                     }
                 }
@@ -420,10 +420,12 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
             if (playerCollision) // This goes further on the previous
             {
                 sound->playExplosion();
-                player->hasCollision();
+                player->setLives(player->getLives() - 1);
+                player->setYPos(SI::PLAYER_START_POS_Y);
+                player->setXPos(SI::PLAYER_START_POS_X);
                 projectilesFired = 0;
                 for (SI::Projectile *projectile: projectiles) {
-                    projectile->hasCollision();
+                    projectile->resetPosition();
                 }
                 pbonus->resetPosition();
                 nbonus->resetPosition();
@@ -431,13 +433,15 @@ void SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::
 
             //Player with PBonus
             if (pbonus->detectCollision(player)) {
-                pbonus->hasCollision();
+                pbonus->resetPosition();
+                pbonus->setActive(true);
                 pbonusTimer->start();
                 sound->playBonus();
             }
             //Player with NBonus
             if (nbonus->detectCollision(player)) {
-                nbonus->hasCollision();
+                nbonus->resetPosition();
+                nbonus->setActive(true);
                 nbonusTimer->start();
                 sound->playBonus();
             }

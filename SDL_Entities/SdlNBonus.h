@@ -5,10 +5,10 @@
 #ifndef SPACE_INVADORS_SDLNBONUS_H
 #define SPACE_INVADORS_SDLNBONUS_H
 
-#include "../Entities/NBonus.h"
+#include "../Entities/BonusEntity.h"
 
 namespace SDL_SI {
-    class SdlNBonus : public SI::NBonus {
+    class SdlNBonus : public SI::BonusEntity {
     public:
         // Constructors
         SdlNBonus(float, float, float, float, float, float);

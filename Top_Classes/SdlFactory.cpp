@@ -57,12 +57,12 @@ SI::Projectile* SDL_SI::SdlFactory::createProjectile(float xPos, float yPos, flo
     return new SdlProjectile(xPos, yPos, width, height, dx, dy);
 }
 
-SI::NBonus* SDL_SI::SdlFactory::createNBonus(float xPos, float yPos, float width, float height, float dx, float dy)
+SI::BonusEntity* SDL_SI::SdlFactory::createNBonus(float xPos, float yPos, float width, float height, float dx, float dy)
 {
     return new SdlNBonus(xPos, yPos, width, height, dx, dy);
 }
 
-SI::PBonus* SDL_SI::SdlFactory::createPBonus(float xPos, float yPos, float width, float height, float dx, float dy)
+SI::BonusEntity* SDL_SI::SdlFactory::createPBonus(float xPos, float yPos, float width, float height, float dx, float dy)
 {
     return new SdlPBonus(xPos, yPos, width, height, dx, dy);
 }
