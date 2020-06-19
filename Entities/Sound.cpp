@@ -3,21 +3,19 @@
 //
 
 #include "Sound.h"
+
 //
 // ------------------------------------------------------Constructors---------------------------------------------------
 //
-SI::Sound::Sound()
-{
+SI::Sound::Sound() {
     // nothing to do
 }
 
-SI::Sound::~Sound()
-{
+SI::Sound::~Sound() {
     // nothing to do
 }
 
-SI::Sound::Sound(const SI::Sound& other)
-{
+SI::Sound::Sound(const SI::Sound& other) {
     // nothing to do
 }
 
@@ -25,7 +23,7 @@ SI::Sound::Sound(const SI::Sound& other)
 // ---------------------------------------------------Operators---------------------------------------------------------
 //
 SI::Sound& SI::Sound::operator=(const SI::Sound& other) {
-    if (this != &other){
+    if (this != &other) {
         // nothing to do
     }
     return *this;

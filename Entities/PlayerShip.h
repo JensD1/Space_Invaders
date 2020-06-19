@@ -15,7 +15,9 @@ namespace SI {
     public:
         // Constructors
         PlayerShip(float, float, float, float, float, float);
+
         virtual ~PlayerShip();
+
         PlayerShip(const SI::PlayerShip&);
 
         // Operators
@@ -23,7 +25,9 @@ namespace SI {
 
         // Methods
         void setLives(int);
+
         int getLives();
+
         virtual void visualize(SI::Window*) = 0;
     };
 }

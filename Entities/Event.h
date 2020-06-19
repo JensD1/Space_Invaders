@@ -13,7 +13,9 @@ namespace SI {
     public:
         // Constructors
         Event();
+
         virtual ~Event();
+
         Event(const SI::Event&);
 
         // Operators

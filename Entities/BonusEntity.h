@@ -6,6 +6,7 @@
 #define SPACE_INVADORS_BONUSENTITY_H
 
 #include "ReusableEntity.h"
+
 namespace SI {
     class BonusEntity : public ReusableEntity {
     protected:
@@ -13,7 +14,9 @@ namespace SI {
     public:
         // Constructors
         BonusEntity(float, float, float, float, float, float);
+
         virtual ~BonusEntity();
+
         BonusEntity(const SI::BonusEntity&);
 
         // Operators
@@ -21,8 +24,11 @@ namespace SI {
 
         // Methods
         virtual void visualize(SI::Window*) = 0;
+
         bool getActive();
+
         void setActive(bool);
+
         void spawn();
     };
 }

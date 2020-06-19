@@ -29,7 +29,7 @@ namespace SDL_SI {
         SDL_Renderer* gRenderer;
 
         //Globally used font
-        TTF_Font *gFont;
+        TTF_Font* gFont;
 
     public:
         //Initializes variables
@@ -46,19 +46,23 @@ namespace SDL_SI {
 
         //Loads image at specified path
         bool loadImageFromFile(std::string);
-        bool loadFromRenderedText( std::string, SDL_Color);
+
+        bool loadFromRenderedText(std::string, SDL_Color);
 
         //Deallocates texture
         void free();
 
         //Renders texture at given point
-        void render(TypeOfRender, int, int, int= 0, int= 0, SDL_Rect *clip = nullptr);
+        void render(SDL_SI::TypeOfRender, int, int, int= 0, int= 0, SDL_Rect* clip = nullptr);
 
         //Gets image dimensions
         int getmWidth();
+
         int getmHeight();
+
         // Gets text dimensions
         int getnWidth();
+
         int getnHeight();
     };
 }

@@ -12,7 +12,9 @@ namespace SDL_SI {
     public:
         // Constructors
         SdlNBonus(float, float, float, float, float, float);
+
         ~SdlNBonus();
+
         SdlNBonus(const SDL_SI::SdlNBonus&);
 
         // Operators

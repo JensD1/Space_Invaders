@@ -6,6 +6,7 @@
 #define SPACE_INVADERS_REUSABLEENTITY_H
 
 #include "Entity.h"
+
 namespace SI {
     class ReusableEntity : public Entity {
     protected:
@@ -13,7 +14,9 @@ namespace SI {
     public:
         // Constructors
         ReusableEntity(float, float, float, float, float, float);
+
         virtual ~ReusableEntity();
+
         ReusableEntity(const SI::ReusableEntity&);
 
         // Operators
@@ -21,8 +24,11 @@ namespace SI {
 
         // Methods
         virtual void visualize(SI::Window*) = 0;
+
         void resetPosition();
+
         bool getInField();
+
         void setInField(bool);
     };
 }

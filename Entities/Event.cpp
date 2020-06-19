@@ -9,26 +9,23 @@
 // ------------------------------------------------------Constructors---------------------------------------------------
 //
 
-SI::Event::Event()
-{
+SI::Event::Event() {
     std::cout << "Event created." << std::endl;
 }
 
-SI::Event::~Event()
-{
+SI::Event::~Event() {
     std::cout << "Event Destroyed." << std::endl;
 }
 
-SI::Event::Event(const SI::Event& other)
-{
+SI::Event::Event(const SI::Event& other) {
     std::cout << "Event copied." << std::endl;
 }
 
 //
 // ---------------------------------------------------Operators---------------------------------------------------------
 //
-SI::Event &SI::Event::operator=(const SI::Event& other) {
-    if(this != &other){
+SI::Event& SI::Event::operator=(const SI::Event& other) {
+    if (this != &other) {
         // nothing to do
     }
     std::cout << "Event Destroyed." << std::endl;

@@ -5,30 +5,29 @@
 #include "SdlEnemyShip.h"
 #include <iostream>
 #include "../SdlConstants.h"
+
 //
-// Constructors---------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------Constructors---------------------------------------------------
 //
-SDL_SI::SdlEnemyShip::SdlEnemyShip(float xPos, float yPos, float width, float height, float dx, float dy) : SI::EnemyShip(xPos, yPos, width, height, dx, dy)
-{
+SDL_SI::SdlEnemyShip::SdlEnemyShip(float xPos, float yPos, float width, float height, float dx, float dy)
+        : SI::EnemyShip(xPos, yPos, width, height, dx, dy) {
     std::cout << "SdlEnemyShip created" << std::endl;
 }
 
-SDL_SI::SdlEnemyShip::~SdlEnemyShip()
-{
-    std::cout << "SdlEnemyShip destroyed" << std::endl; // Let op window moet nog niet vernietigd worden! Anders is bij elke EnemyShip dat gedestruct wordt heel het scherm weg!
+SDL_SI::SdlEnemyShip::~SdlEnemyShip() {
+    std::cout << "SdlEnemyShip destroyed"
+              << std::endl; // Let op window moet nog niet vernietigd worden! Anders is bij elke EnemyShip dat gedestruct wordt heel het scherm weg!
 }
 
-SDL_SI::SdlEnemyShip::SdlEnemyShip(const SDL_SI::SdlEnemyShip& other): SI::EnemyShip(other)
-{
+SDL_SI::SdlEnemyShip::SdlEnemyShip(const SDL_SI::SdlEnemyShip& other) : SI::EnemyShip(other) {
     std::cout << "SdlEnemyShip copied" << std::endl;
 }
 
 //
-// Operators------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------Operators-------------------------------------------------------
 //
-SDL_SI::SdlEnemyShip& SDL_SI::SdlEnemyShip::operator=(const SDL_SI::SdlEnemyShip& other)
-{
-    if(this != &other){
+SDL_SI::SdlEnemyShip& SDL_SI::SdlEnemyShip::operator=(const SDL_SI::SdlEnemyShip& other) {
+    if (this != &other) {
         SI::EnemyShip::operator=(other);
     }
     std::cout << "SdlEnemyShip assigned" << std::endl;
@@ -36,9 +35,14 @@ SDL_SI::SdlEnemyShip& SDL_SI::SdlEnemyShip::operator=(const SDL_SI::SdlEnemyShip
 }
 
 //
-// Methods--------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------Methods--------------------------------------------------------
 //
-void SDL_SI::SdlEnemyShip::visualize(SI::Window* window)
-{
-    window->drawSprite(SDL_SI::SdlEnemyShip::xPos, SDL_SI::SdlEnemyShip::yPos, SDL_SI::SdlEnemyShip::width, SDL_SI::SdlEnemyShip::height , SDL_SI::ENEMY_SPRITE);
+/**
+ * This method will visualize the enemy ship.
+ * @param window This is the window where the sprite will be drawn on (SI::Window*). This pointer will actually contain an
+ *                  SDL_SI::Window*.
+ */
+void SDL_SI::SdlEnemyShip::visualize(SI::Window* window) {
+    window->drawSprite(SDL_SI::SdlEnemyShip::xPos, SDL_SI::SdlEnemyShip::yPos, SDL_SI::SdlEnemyShip::width,
+                       SDL_SI::SdlEnemyShip::height, SDL_SI::ENEMY_SPRITE);
 }

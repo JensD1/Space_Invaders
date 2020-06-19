@@ -13,7 +13,7 @@
 #include "../Entities/Window.h"
 
 namespace SDL_SI {
-class SdlWindow: public SI::Window{
+    class SdlWindow : public SI::Window {
     private:
         //The window we'll be rendering to
         SDL_Window* gWindow = NULL;
@@ -30,7 +30,9 @@ class SdlWindow: public SI::Window{
     public:
         // Constructors
         SdlWindow();
+
         ~SdlWindow();
+
         SdlWindow(const SdlWindow&);
 
         // Operators
@@ -41,17 +43,24 @@ class SdlWindow: public SI::Window{
 
         //Loads media
         bool loadSpriteMedia();
+
         bool loadTextMedia();
 
         //Frees media and shuts down SDL
         void close();
 
         void update();
+
         void clear();
+
         void drawSprite(float, float, float, float, int);
+
         void drawText(float, float, std::string);
+
         void visualizeStartScreen();
+
         void visualizeEndScreen(int, bool);
+
         void visualizeScore(int);
     };
 }

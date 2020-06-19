@@ -12,15 +12,20 @@ namespace SI {
 
         virtual ~Sound();
 
-        Sound(const Sound&);
+        Sound(const SI::Sound&);
 
-        Sound& operator=(const Sound&);
+        SI::Sound& operator=(const SI::Sound&);
 
         virtual void pauseMusic() = 0;
+
         virtual void resumeMusic() = 0;
+
         virtual void playExplosion() = 0;
+
         virtual void playBulletShot() = 0;
+
         virtual void playBonus() = 0;
+
         virtual void playProjectileShot() = 0;
     };
 }

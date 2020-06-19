@@ -12,7 +12,9 @@ namespace SDL_SI {
     public:
         // Constructors
         SdlPlayerShip(float, float, float, float, float, float);
+
         ~SdlPlayerShip();
+
         SdlPlayerShip(const SDL_SI::SdlPlayerShip&);
 
         // Operators

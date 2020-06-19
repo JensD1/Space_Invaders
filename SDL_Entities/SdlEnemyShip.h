@@ -12,7 +12,9 @@ namespace SDL_SI {
     public:
         // Constructors
         SdlEnemyShip(float, float, float, float, float, float);
+
         ~SdlEnemyShip();
+
         SdlEnemyShip(const SDL_SI::SdlEnemyShip&);
 
         // Operators
