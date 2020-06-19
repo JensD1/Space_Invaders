@@ -234,6 +234,7 @@ SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Windo
     // variabelen.
     int projectilesFired = 0;
     char directionEnemies = 'R';
+    float enemyExtraSpeed = 0;
     bool pause = false;
     *score = 0;
 
@@ -286,7 +287,6 @@ SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Windo
                 debounceTimer->start();
             }
         }
-
 
         //
         //--------------------------------------------Update Positions--------------------------------------------------
@@ -350,10 +350,10 @@ SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Windo
             for (SI::EnemyShip* enemy: enemies) {
                 if (directionEnemies == 'R') {
                     enemy->setDy(0);
-                    enemy->setDx(SI::ENEMYSPEED_H);
+                    enemy->setDx(SI::ENEMYSPEED_H + enemyExtraSpeed);
                 } else if (directionEnemies == 'L') {
                     enemy->setDy(0);
-                    enemy->setDx(-SI::ENEMYSPEED_H);
+                    enemy->setDx(-SI::ENEMYSPEED_H - enemyExtraSpeed);
                 } else {
                     enemy->setDy(SI::ENEMYSPEED_V);
                     enemy->setDx(0);
@@ -438,6 +438,7 @@ SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Windo
                         enemyIt = enemies.erase(enemyIt);
                         *score += SI::SCORE_HIT_ENEMY;
                         sound->playExplosion();
+                        enemyExtraSpeed += SI::ENEMY_SPEED_UPDATE; // The speed of the other ones will increase.
                         if (!pbonus->getActive()) {
                             bullet->resetPosition();
                         }

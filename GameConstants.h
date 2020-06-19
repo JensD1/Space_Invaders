@@ -37,6 +37,7 @@ namespace SI {
     const float ENEMY_OFFSET_BOARDERS_L = 0.5 * ENEMY_WIDTH;
     const float ENEMY_OFFSET_BOARDERS_R = ENEMY_OFFSET_BOARDERS_L + ENEMY_WIDTH;
     const int ENEMY_FIRECHANCE = 20; // chance on 10000.
+    const float ENEMY_SPEED_UPDATE = 0.00005;
 
     // Bullet constants
     const float BULLET_DISTANCE_PLAYER = -0.01;
