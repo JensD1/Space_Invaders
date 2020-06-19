@@ -6,6 +6,7 @@
 #include <vector>
 #include "Game.h"
 #include <set>
+#include <fstream>
 
 //
 // ----------------------------------------------------Variables--------------------------------------------------------
@@ -66,6 +67,26 @@ void SI::Game::run() {
     //
     // ----------------------------------------------------Init---------------------------------------------------------
     //
+    //Open the score file
+    int highScore = 0;
+    std::fstream scoreFile;
+    scoreFile.open("./Score.txt", std::fstream::in | std::fstream::out);
+    if(!scoreFile){ // file doesn't exist yet
+        std::cout << "Creating HighScore file..." << std::endl;
+        // create a new empty file of length 0 (discard all content if there is content).
+        scoreFile.open("./Score.txt", std::fstream::in | std::fstream::out| std::fstream::trunc);
+        scoreFile << 0;
+        scoreFile.close();
+    }
+    else{
+        std::cout<<"Reading HighScore in..." << std::endl;
+        std::string line;
+        std::getline(scoreFile, line);
+        highScore = std::stoi(line); // string to int.
+        printf("High Score is: %d\n", highScore);
+        scoreFile.close();
+    }
+
     // Window
     SI::Window* window = SI::Game::aFactory->createWindow();
     int currentScreen = SI::START_SCREEN;
@@ -89,14 +110,27 @@ void SI::Game::run() {
         // ----------------------------------------Switch Game modes----------------------------------------------------
         //
         if (currentScreen == SI::START_SCREEN) {
-            SI::Game::startScreen(&currentScreen, &quit, event, window);
+            SI::Game::startScreen(&currentScreen, &quit, event, window, highScore);
         } else if (currentScreen == SI::GAME_SCREEN) {
             SI::Game::gameScreen(&currentScreen, &quit, event, window, sound, &score,
-                                 &won); // This will be ran at least 1 time before startedGame will be set to true ==> we have everything initialised for sure.
+                                 &won, &highScore); // This will be ran at least 1 time before startedGame will be set to true ==> we have everything initialised for sure.
         } else {
-            SI::Game::endScreen(&currentScreen, &quit, event, window, score, won);
+            SI::Game::endScreen(&currentScreen, &quit, event, window, score, won, highScore);
         }
     }
+
+    std::cout << "writing high score to file..." << std::endl;
+    scoreFile.open("./Score.txt", std::fstream::out);
+    if(scoreFile.is_open()) {
+        std::cout << "High score file updated." << std::endl;
+        scoreFile << highScore;
+        std::cout << highScore << std::endl;
+    }
+    else{
+        std::cout << "Unable to update the file." << std::endl;
+    }
+    scoreFile.close();
+
     delete event;
     delete sound;
     delete window;
@@ -109,7 +143,7 @@ void SI::Game::run() {
  * @param event A pointer to an object that can read the players events (SI::Event).
  * @param window The window where the renderer will render the start screen on (SI::Window).
  */
-void SI::Game::startScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window) {
+void SI::Game::startScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window, int highScore) {
     while (!*quit && *currentScreen == SI::START_SCREEN) {
         //
         // -----------------------------------------Read User Input-----------------------------------------------------
@@ -126,7 +160,7 @@ void SI::Game::startScreen(int* currentScreen, bool* quit, SI::Event* event, SI:
         //-------------------------------------------------visualise----------------------------------------------------
         //
         window->clear();
-        window->visualizeStartScreen();
+        window->visualizeStartScreen(highScore);
         window->update();
     }
 }
@@ -140,7 +174,7 @@ void SI::Game::startScreen(int* currentScreen, bool* quit, SI::Event* event, SI:
  * @param score An variable that contains the player's score (int).
  * @param won A variable that denotes if the player has won the game (bool). When this variable is True the player has won.
  */
-void SI::Game::endScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window, int score, bool won) {
+void SI::Game::endScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window, int score, bool won, int highScore) {
     event->handleEvent(); // clear the events from in game.
     while (!*quit && *currentScreen == SI::END_SCREEN) {
         //
@@ -158,7 +192,7 @@ void SI::Game::endScreen(int* currentScreen, bool* quit, SI::Event* event, SI::W
         //-------------------------------------------------visualise----------------------------------------------------
         //
         window->clear();
-        window->visualizeEndScreen(score, won);
+        window->visualizeEndScreen(score, won, highScore);
         window->update();
     }
 }
@@ -180,7 +214,7 @@ void SI::Game::endScreen(int* currentScreen, bool* quit, SI::Event* event, SI::W
  */
 void
 SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Window* window, SI::Sound* sound, int* score,
-                     bool* won) {
+                     bool* won, int* highScore) {
     //
     //----------------------------------------------Init------------------------------------------------------------
     //
@@ -536,7 +570,7 @@ SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Windo
         window->clear();
 
         // score
-        window->visualizeScore(*score);
+        window->visualizeScore(*score, *highScore);
 
         // Player
         player->visualize(window);
@@ -600,6 +634,11 @@ SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Windo
         }
         fpsTimer->start();
 
+    }
+
+    // Check if high score is beat.
+    if((*score > * highScore) && !*quit){  // unfinished games are not saved.
+        *highScore = *score;
     }
 
     //

@@ -76,13 +76,15 @@ namespace SI {
 
     // score
     const int SCORE_SIZE = 40;
-    const float SCORE_SPACING = 0.1;
+    const float SCORE_SPACING = 0.05;
     const float SCORE_START_POS_X = 3 * (LIVES_WIDTH + LIVES_SPACING) + LIVES_START_POS_X + SCORE_SPACING;
     const float SCORE_START_POS_Y = 0.01;
     const int SCORE_HIT_PLAYER = -500;
     const int SCORE_HIT_ENEMY = 500;
     const int SCORE_HIT_PROJECTILE = 100;
     const int SCORE_END_GAME = -5000;
+    const float HIGH_SCORE_X_POS = 0.7;
+    const float HIGH_SCORE_Y_POS = SCORE_START_POS_Y;
 
     // Pause
     const float PAUSE_X_POS = 0.40;

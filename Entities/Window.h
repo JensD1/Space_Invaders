@@ -28,11 +28,11 @@ namespace SI {
 
         virtual void drawText(float, float, std::string) = 0;
 
-        virtual void visualizeStartScreen() = 0;
+        virtual void visualizeStartScreen(int) = 0;
 
-        virtual void visualizeEndScreen(int, bool) = 0;
+        virtual void visualizeEndScreen(int, bool, int) = 0;
 
-        virtual void visualizeScore(int) = 0;
+        virtual void visualizeScore(int, int) = 0;
     };
 }
 

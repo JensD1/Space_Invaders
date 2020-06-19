@@ -37,11 +37,11 @@ namespace SI {
 
         void run();
 
-        void startScreen(int*, bool*, SI::Event*, SI::Window*);
+        void startScreen(int*, bool*, SI::Event*, SI::Window*, int);
 
-        void endScreen(int*, bool*, SI::Event*, SI::Window*, int, bool);
+        void endScreen(int*, bool*, SI::Event*, SI::Window*, int, bool, int);
 
-        void gameScreen(int*, bool*, SI::Event*, SI::Window*, SI::Sound*, int*, bool*);
+        void gameScreen(int*, bool*, SI::Event*, SI::Window*, SI::Sound*, int*, bool*, int*);
     };
 }
 

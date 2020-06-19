@@ -273,7 +273,7 @@ void SDL_SI::SdlWindow::drawText(float xPos, float yPos, std::string string) {
 /**
  * Visualize the start screen. The update method must be ran afterwards to see the effect.
  */
-void SDL_SI::SdlWindow::visualizeStartScreen() {
+void SDL_SI::SdlWindow::visualizeStartScreen(int highScore) {
     SDL_SI::SdlWindow::drawSprite(SDL_SI::TITLE_X, SDL_SI::TITLE_Y, TITLE_WIDTH, SDL_SI::TITLE_HEIGHT,
                                   SDL_SI::TITLE_SPRITE);
     SDL_SI::SdlWindow::drawText(SDL_SI::START_TEXT_X_POS, SDL_SI::START_TEXT_Y_POS, "PRESS SPACE TO START");
@@ -283,6 +283,7 @@ void SDL_SI::SdlWindow::visualizeStartScreen() {
                                   SDL_SI::START_SCREEN_SPRITE_2_HEIGHT, SDL_SI::PLAYER_SPRITE);
     SDL_SI::SdlWindow::drawSprite(SDL_SI::START_SCREEN_SPRITE_3_X_POS, SDL_SI::START_SCREEN_SPRITE_3_Y_POS,
                                   SI::BULLET_WIDTH, SI::BULLET_HEIGHT, SDL_SI::BULLET_SPRITE);
+    SDL_SI::SdlWindow::drawText(SI::HIGH_SCORE_X_POS, SI::HIGH_SCORE_Y_POS, "HS: " + std::to_string(highScore));
 }
 
 /**
@@ -290,7 +291,7 @@ void SDL_SI::SdlWindow::visualizeStartScreen() {
  * @param score The score to be printed (int).
  * @param won has the player won the game (bool).
  */
-void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won) {
+void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won, int highScore) {
     std::string string;
     if (won) {
         string = "YOU WON!";
@@ -302,12 +303,14 @@ void SDL_SI::SdlWindow::visualizeEndScreen(int score, bool won) {
                                 "SCORE:" + std::to_string(score));
     SDL_SI::SdlWindow::drawText(SDL_SI::END_SCREEN_TEXT_3_X_POS, SDL_SI::END_SCREEN_TEXT_3_Y_POS,
                                 "PRESS SPACE TO START");
+    SDL_SI::SdlWindow::drawText(SI::HIGH_SCORE_X_POS, SI::HIGH_SCORE_Y_POS, "HS: " + std::to_string(highScore));
 }
 
 /**
  * Visualise the score.
  * @param score The score to be printed (int).
  */
-void SDL_SI::SdlWindow::visualizeScore(int score) {
+void SDL_SI::SdlWindow::visualizeScore(int score, int highScore) {
     SDL_SI::SdlWindow::drawText(SI::SCORE_START_POS_X, SI::SCORE_START_POS_Y, "Score: " + std::to_string(score));
+    SDL_SI::SdlWindow::drawText(SI::HIGH_SCORE_X_POS, SI::HIGH_SCORE_Y_POS, "HS: " + std::to_string(highScore));
 }

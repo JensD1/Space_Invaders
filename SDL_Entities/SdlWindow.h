@@ -57,11 +57,11 @@ namespace SDL_SI {
 
         void drawText(float, float, std::string);
 
-        void visualizeStartScreen();
+        void visualizeStartScreen(int);
 
-        void visualizeEndScreen(int, bool);
+        void visualizeEndScreen(int, bool, int);
 
-        void visualizeScore(int);
+        void visualizeScore(int, int);
     };
 }
 
