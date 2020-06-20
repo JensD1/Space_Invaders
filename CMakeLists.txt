@@ -9,46 +9,46 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR})
 
 SET(SRC
-        Top_Classes/Game.cpp
-        Top_Classes/Game.h
-        Top_Classes/AFactory.h
-        Top_Classes/SdlFactory.cpp
-        Top_Classes/SdlFactory.h
-        Entities/PlayerShip.cpp
-        Entities/PlayerShip.h
-        Entities/EnemyShip.cpp
-        Entities/EnemyShip.h
-        Entities/Entity.cpp
-        Entities/Entity.h
-        Entities/BonusEntity.cpp
-        Entities/BonusEntity.h
-        SDL_Entities/SdlPlayerShip.cpp
-        SDL_Entities/SdlPlayerShip.h
-        SDL_Entities/SdlBullet.cpp
-        SDL_Entities/SdlBullet.h
-        SDL_Entities/SdlEnemyShip.cpp
-        SDL_Entities/SdlEnemyShip.h
-        SDL_Entities/SdlProjectile.cpp
-        SDL_Entities/SdlProjectile.h
-        SDL_Entities/SdlPBonus.cpp
-        SDL_Entities/SdlPBonus.h
-        SDL_Entities/SdlNBonus.cpp
-        SDL_Entities/SdlNBonus.h
-        Entities/Event.cpp
-        Entities/Event.h
-        GameConstants.h
-        SDL_Entities/SdlEvent.cpp
-        SDL_Entities/SdlEvent.h
-        SDL_Entities/SdlWindow.cpp
-        SDL_Entities/SdlWindow.h
-        SDL_Entities/LTexture.cpp
-        SDL_Entities/LTexture.h
-        SdlConstants.h
-        SDL_Entities/SdlTimer.cpp
-        SDL_Entities/SdlTimer.h
-        Entities/Timer.cpp
-        Entities/Timer.h
-        Entities/Window.cpp
-        Entities/Window.h Entities/Sound.cpp Entities/Sound.h SDL_Entities/SdlSound.cpp SDL_Entities/SdlSound.h Entities/ReusableEntity.cpp Entities/ReusableEntity.h)
-add_executable(Space_Invaders ${SRC} Top_Classes/main.cpp)
+        Main_Classes/Game.cpp
+        Main_Classes/Game.h
+        Abstract/AFactory.h
+        SDL/SdlFactory.cpp
+        SDL/SdlFactory.h
+        Abstract/Entities/PlayerShip.cpp
+        Abstract/Entities/PlayerShip.h
+        Abstract/Entities/EnemyShip.cpp
+        Abstract/Entities/EnemyShip.h
+        Abstract/Entities/Entity.cpp
+        Abstract/Entities/Entity.h
+        Abstract/Entities/BonusEntity.cpp
+        Abstract/Entities/BonusEntity.h
+        SDL/SDL_Entities/SdlPlayerShip.cpp
+        SDL/SDL_Entities/SdlPlayerShip.h
+        SDL/SDL_Entities/SdlBullet.cpp
+        SDL/SDL_Entities/SdlBullet.h
+        SDL/SDL_Entities/SdlEnemyShip.cpp
+        SDL/SDL_Entities/SdlEnemyShip.h
+        SDL/SDL_Entities/SdlProjectile.cpp
+        SDL/SDL_Entities/SdlProjectile.h
+        SDL/SDL_Entities/SdlPBonus.cpp
+        SDL/SDL_Entities/SdlPBonus.h
+        SDL/SDL_Entities/SdlNBonus.cpp
+        SDL/SDL_Entities/SdlNBonus.h
+        Abstract/Event.cpp
+        Abstract/Event.h
+        Constants/GameConstants.h
+        SDL/SdlEvent.cpp
+        SDL/SdlEvent.h
+        SDL/Window/SdlWindow.cpp
+        SDL/Window/SdlWindow.h
+        SDL/Window/LTexture.cpp
+        SDL/Window/LTexture.h
+        Constants/SdlConstants.h
+        SDL/SdlTimer.cpp
+        SDL/SdlTimer.h
+        Abstract/Timer.cpp
+        Abstract/Timer.h
+        Abstract/Window.cpp
+        Abstract/Window.h Abstract/Sound.cpp Abstract/Sound.h SDL/SdlSound.cpp SDL/SdlSound.h Abstract/Entities/ReusableEntity.cpp Abstract/Entities/ReusableEntity.h)
+add_executable(Space_Invaders ${SRC} Main_Classes/main.cpp)
 target_link_libraries(Space_Invaders ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer)
