@@ -6,22 +6,21 @@
 #include <iostream>
 #include <assert.h>
 
-
-SDL_SI::SdlSound::SdlSound()
-{
+//
+// ------------------------------------------------------Constructors---------------------------------------------------
+//
+SDL_SI::SdlSound::SdlSound() {
     assert(SDL_SI::SdlSound::init());
     assert(loadMedia());
     //Play the music
-    Mix_PlayMusic( gMusic, -1 );
+    Mix_PlayMusic(gMusic, -1);
 }
 
-SDL_SI::SdlSound::~SdlSound()
-{
+SDL_SI::SdlSound::~SdlSound() {
     SDL_SI::SdlSound::close();
 }
 
-SDL_SI::SdlSound::SdlSound(const SDL_SI::SdlSound& other)
-{
+SDL_SI::SdlSound::SdlSound(const SDL_SI::SdlSound& other) {
     gMusic = other.gMusic;
     gExplosion = other.gExplosion;
     gBullet = other.gBullet;
@@ -29,8 +28,11 @@ SDL_SI::SdlSound::SdlSound(const SDL_SI::SdlSound& other)
     gProjectile = other.gProjectile;
 }
 
+//
+// -----------------------------------------------------Operators-------------------------------------------------------
+//
 SDL_SI::SdlSound& SDL_SI::SdlSound::operator=(const SDL_SI::SdlSound& other) {
-    if (this != &other){
+    if (this != &other) {
         gMusic = other.gMusic;
         gExplosion = other.gExplosion;
         gBullet = other.gBullet;
@@ -40,44 +42,48 @@ SDL_SI::SdlSound& SDL_SI::SdlSound::operator=(const SDL_SI::SdlSound& other) {
     return *this;
 }
 
-void SDL_SI::SdlSound::close() // todo zet overal SDL_SI!!!!!!!!!
-{
+//
+// ------------------------------------------------------Methods--------------------------------------------------------
+//
+/**
+ * Free all allocated memory for sound and quit the SDL mixer.
+ */
+void SDL_SI::SdlSound::close() {
     //Free the sound effects
-    Mix_FreeChunk( gExplosion );
-    Mix_FreeChunk( gBonus );
-    Mix_FreeChunk( gBullet );
-    Mix_FreeChunk( gProjectile );
+    Mix_FreeChunk(SDL_SI::SdlSound::gExplosion);
+    Mix_FreeChunk(SDL_SI::SdlSound::gBonus);
+    Mix_FreeChunk(SDL_SI::SdlSound::gBullet);
+    Mix_FreeChunk(SDL_SI::SdlSound::gProjectile);
 
-    gExplosion = nullptr;
-    gBonus = nullptr;
-    gBullet = nullptr;
-    gProjectile = nullptr;
+    SDL_SI::SdlSound::gExplosion = nullptr;
+    SDL_SI::SdlSound::gBonus = nullptr;
+    SDL_SI::SdlSound::gBullet = nullptr;
+    SDL_SI::SdlSound::gProjectile = nullptr;
 
     //Free the music
-    Mix_FreeMusic( gMusic );
-    gMusic = nullptr;
+    Mix_FreeMusic(SDL_SI::SdlSound::gMusic);
+    SDL_SI::SdlSound::gMusic = nullptr;
 
     //Quit SDL subsystems
     Mix_Quit(); // we will quit SDL in SdlWindow
 }
 
-bool SDL_SI::SdlSound::init()
-{
+/**
+ * initialize the mixer and SDL.
+ * @return true when successful (bool)
+ */
+bool SDL_SI::SdlSound::init() {
     //Initialization flag
     bool success = true;
 
     //Initialize SDL
-    if( SDL_Init( SDL_INIT_AUDIO ) < 0 )
-    {
-        printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
         success = false;
-    }
-    else
-    {
+    } else {
         //Initialize SDL_mixer
-        if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
-        {
-            printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+            printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
             success = false;
         }
     }
@@ -85,78 +91,89 @@ bool SDL_SI::SdlSound::init()
     return success;
 }
 
-bool SDL_SI::SdlSound::loadMedia()
-{
+/**
+ * Load all sound fragments as chunks and load the music.
+ * @return True when successful (bool)
+ */
+
+bool SDL_SI::SdlSound::loadMedia() {
     //Loading success flag
     bool success = true;
 
     //Load music
-    gMusic = Mix_LoadMUS( "../Media/Electronic-Fantasy.wav" );
-    if( gMusic == nullptr )
-    {
-        printf( "Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError() );
+    SDL_SI::SdlSound::gMusic = Mix_LoadMUS("../Media/Electronic-Fantasy.wav");
+    if (SDL_SI::SdlSound::gMusic == nullptr) {
+        printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
 
     //Load sound effects
-    gExplosion = Mix_LoadWAV( "../Media/Explosion.wav" );
-    if( gExplosion == nullptr )
-    {
-        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+    SDL_SI::SdlSound::gExplosion = Mix_LoadWAV("../Media/Explosion.wav");
+    if (SDL_SI::SdlSound::gExplosion == nullptr) {
+        printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
     //Load sound effects
-    gBullet = Mix_LoadWAV( "../Media/BulletShot.wav" );
-    if( gExplosion == nullptr )
-    {
-        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+    SDL_SI::SdlSound::gBullet = Mix_LoadWAV("../Media/BulletShot.wav");
+    if (SDL_SI::SdlSound::gExplosion == nullptr) {
+        printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
     //Load sound effects
-    gBonus = Mix_LoadWAV( "../Media/bonus.wav" );
-    if( gExplosion == nullptr )
-    {
-        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+    SDL_SI::SdlSound::gBonus = Mix_LoadWAV("../Media/bonus.wav");
+    if (SDL_SI::SdlSound::gExplosion == nullptr) {
+        printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
     //Load sound effects
-    gProjectile = Mix_LoadWAV( "../Media/projectileShot.wav" );
-    if( gExplosion == nullptr )
-    {
-        printf( "Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+    SDL_SI::SdlSound::gProjectile = Mix_LoadWAV("../Media/projectileShot.wav");
+    if (SDL_SI::SdlSound::gExplosion == nullptr) {
+        printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
         success = false;
     }
     return success;
 }
 
-void SDL_SI::SdlSound::pauseMusic()
-{
+/**
+ * Pause the music.
+ */
+void SDL_SI::SdlSound::pauseMusic() {
     // Pause the music
     Mix_PauseMusic();
 }
 
-void SDL_SI::SdlSound::resumeMusic()
-{
+/**
+ * resume the music.
+ */
+void SDL_SI::SdlSound::resumeMusic() {
     // Resume the music
     Mix_ResumeMusic();
 }
 
-void SDL_SI::SdlSound::playExplosion()
-{
-    Mix_PlayChannel( -1, gExplosion, 0 );
+/**
+ * Play the explosion sound.
+ */
+void SDL_SI::SdlSound::playExplosion() {
+    Mix_PlayChannel(-1, SDL_SI::SdlSound::gExplosion, 0);
 }
 
-void SDL_SI::SdlSound::playBulletShot()
-{
-    Mix_PlayChannel( -1, gBullet, 0 );
+/**
+ * Play the bullet shot sound.
+ */
+void SDL_SI::SdlSound::playBulletShot() {
+    Mix_PlayChannel(-1, SDL_SI::SdlSound::gBullet, 0);
 }
 
-void SDL_SI::SdlSound::playBonus()
-{
-    Mix_PlayChannel( -1, gBonus, 0 );
+/**
+ * Play the Bonus aquired sound.
+ */
+void SDL_SI::SdlSound::playBonus() {
+    Mix_PlayChannel(-1, SDL_SI::SdlSound::gBonus, 0);
 }
 
-void SDL_SI::SdlSound::playProjectileShot()
-{
-    Mix_PlayChannel( -1, gProjectile, 0 );
+/**
+ * Play the projectile shot sound.
+ */
+void SDL_SI::SdlSound::playProjectileShot() {
+    Mix_PlayChannel(-1, SDL_SI::SdlSound::gProjectile, 0);
 }

@@ -22,29 +22,44 @@ namespace SI {
     public:
         // Constructors
         Entity();
+
         Entity(float, float, float, float, float, float);
+
         virtual ~Entity();
+
         Entity(const SI::Entity&);
 
         // Methods
         bool detectCollision(SI::Entity*);
+
         virtual void visualize(SI::Window*) = 0;
+
         void updatePosition();
 
         // Getters
         float getXPos() const;
+
         float getYPos() const;
+
         float getWidth() const;
+
         float getHeight() const;
+
         float getDx() const;
+
         float getDy() const;
 
         // Setters
         void setXPos(float xPos);
+
         void setYPos(float yPos);
+
         void setWidth(float width);
+
         void setHeight(float height);
+
         void setDx(float dx);
+
         void setDy(float dy);
 
         // Operators

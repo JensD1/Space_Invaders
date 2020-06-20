@@ -13,7 +13,9 @@ namespace SI {
     public:
         // Constructors
         EnemyShip(float, float, float, float, float, float);
+
         virtual ~EnemyShip();
+
         EnemyShip(const SI::EnemyShip&);
 
         // Operators
@@ -21,6 +23,7 @@ namespace SI {
 
         // Methods
         virtual void visualize(SI::Window*) = 0;
+
         bool fireProjectile();
     };
 }

@@ -9,7 +9,7 @@
 #include "SDL2/SDL.h"
 
 namespace SDL_SI {
-    class SdlTimer: public SI::Timer {
+    class SdlTimer : public SI::Timer {
     private:
         // Variables
         Uint32 time = 0;
@@ -19,7 +19,9 @@ namespace SDL_SI {
     public:
         // Constructors
         SdlTimer();
+
         ~SdlTimer();
+
         SdlTimer(const SDL_SI::SdlTimer&);
 
         // Operators
@@ -27,8 +29,11 @@ namespace SDL_SI {
 
         //Methods
         bool timePassed();
+
         void start();
+
         void paused();
+
         void setRequestedTime(unsigned long);
     };
 }

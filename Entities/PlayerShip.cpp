@@ -6,31 +6,31 @@
 #include <iostream>
 
 //
-// Constructors---------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------Constructors---------------------------------------------------
 //
-SI::PlayerShip::PlayerShip(float xPos, float yPos, float width, float height, float dx, float dy) : SI::Entity(xPos, yPos, width, height, dx, dy)
-{
+SI::PlayerShip::PlayerShip(float xPos, float yPos, float width, float height, float dx, float dy) : SI::Entity(xPos,
+                                                                                                               yPos,
+                                                                                                               width,
+                                                                                                               height,
+                                                                                                               dx, dy) {
     SI::PlayerShip::lives = 3;
     std::cout << "PlayerShip created" << std::endl;
 }
 
-SI::PlayerShip::~PlayerShip()
-{
+SI::PlayerShip::~PlayerShip() {
     std::cout << "PlayerShip destroyed" << std::endl;
 }
 
-SI::PlayerShip::PlayerShip(const SI::PlayerShip& other): SI::Entity(other)
-{
+SI::PlayerShip::PlayerShip(const SI::PlayerShip& other) : SI::Entity(other) {
     SI::PlayerShip::lives = other.lives;
     std::cout << "PlayerShip copied" << std::endl;
 }
 
 //
-// Operators------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------Operators---------------------------------------------------------
 //
-SI::PlayerShip& SI::PlayerShip::operator=(const SI::PlayerShip& other)
-{
-    if(this != &other){
+SI::PlayerShip& SI::PlayerShip::operator=(const SI::PlayerShip& other) {
+    if (this != &other) {
         SI::PlayerShip::lives = other.lives;
         SI::Entity::operator=(other);
     }
@@ -39,14 +39,20 @@ SI::PlayerShip& SI::PlayerShip::operator=(const SI::PlayerShip& other)
 }
 
 //
-// Methods------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------Methods----------------------------------------------------------
 //
-int SI::PlayerShip::getLives()
-{
+/**
+ * This method will return the remaining number of lives of the player.
+ * @return the number of lives
+ */
+int SI::PlayerShip::getLives() {
     return SI::PlayerShip::lives;
 }
 
-void SI::PlayerShip::setLives(int lives)
-{
+/**
+ * Set the lives of the player to a new value.
+ * @param lives
+ */
+void SI::PlayerShip::setLives(int lives) {
     SI::PlayerShip::lives = lives;
 }

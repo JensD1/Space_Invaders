@@ -12,19 +12,27 @@ namespace SI {
     public:
         // Constructors
         Window();
+
         virtual ~Window();
+
         Window(const SI::Window&);
 
         // Operators
         SI::Window& operator=(const SI::Window&);
 
         virtual void update() = 0;
+
         virtual void clear() = 0;
+
         virtual void drawSprite(float, float, float, float, int) = 0;
+
         virtual void drawText(float, float, std::string) = 0;
-        virtual void visualizeStartScreen() = 0;
-        virtual void visualizeEndScreen(int, bool) = 0;
-        virtual void visualizeScore(int) = 0;
+
+        virtual void visualizeStartScreen(int) = 0;
+
+        virtual void visualizeEndScreen(int, bool, int) = 0;
+
+        virtual void visualizeScore(int, int) = 0;
     };
 }
 

@@ -6,10 +6,9 @@
 #include <iostream>
 
 //
-// Constructors---------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------Constructors---------------------------------------------------
 //
-SI::Entity::Entity()
-{
+SI::Entity::Entity() {
     std::cout << "Entity created." << std::endl;
     SI::Entity::xPos = 0;
     SI::Entity::yPos = 0;
@@ -19,8 +18,7 @@ SI::Entity::Entity()
     SI::Entity::dy = 0;
 }
 
-SI::Entity::Entity(float xPos, float yPos, float width, float height, float dx, float dy)
-{
+SI::Entity::Entity(float xPos, float yPos, float width, float height, float dx, float dy) {
     std::cout << "Entity created." << std::endl;
     SI::Entity::xPos = xPos;
     SI::Entity::yPos = yPos;
@@ -30,13 +28,11 @@ SI::Entity::Entity(float xPos, float yPos, float width, float height, float dx, 
     SI::Entity::dy = dy;
 }
 
-SI::Entity::~Entity()
-{
+SI::Entity::~Entity() {
     std::cout << "Entity destroyed." << std::endl;
 }
 
-SI::Entity::Entity(const SI::Entity& other)
-{
+SI::Entity::Entity(const SI::Entity& other) {
     SI::Entity::xPos = other.xPos;
     SI::Entity::yPos = other.yPos;
     SI::Entity::width = other.width;
@@ -46,13 +42,16 @@ SI::Entity::Entity(const SI::Entity& other)
 }
 
 //
-// Methods--------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------Methods----------------------------------------------------------
 //
-
-bool SI::Entity::detectCollision(SI::Entity* other)
-{
+/**
+ * This method will detect if there's a collision between this Entity and another one.
+ * @param other is the other entity where you want to check a collision with.
+ * @return true if there's a collision, false if there's not a collision.
+ */
+bool SI::Entity::detectCollision(SI::Entity* other) {
     bool returnValue = true;
-
+    // temporary variables to make it easier below.
     float A_upperEdge = SI::Entity::getYPos();
     float A_lowerEdge = SI::Entity::getYPos() + SI::Entity::getHeight();
     float A_leftEdge = SI::Entity::getXPos();
@@ -63,27 +62,36 @@ bool SI::Entity::detectCollision(SI::Entity* other)
     float B_leftEdge = other->getXPos();
     float B_rightEdge = other->getXPos() + other->getWidth();
 
-    if(A_upperEdge > B_lowerEdge){
+    // Here we check if there's a collision.
+    if (A_upperEdge > B_lowerEdge) {
         returnValue = false;
     }
-    if(A_lowerEdge < B_upperEdge){
+    if (A_lowerEdge < B_upperEdge) {
         returnValue = false;
     }
-    if(A_leftEdge > B_rightEdge){
+    if (A_leftEdge > B_rightEdge) {
         returnValue = false;
     }
-    if(A_rightEdge < B_leftEdge){
+    if (A_rightEdge < B_leftEdge) {
         returnValue = false;
     }
     return returnValue;
 }
 
+/**
+ * Updates the position of this Entity.
+ */
+void SI::Entity::updatePosition() {
+    SI::Entity::setXPos(SI::Entity::getXPos() + SI::Entity::getDx());
+    SI::Entity::setYPos(SI::Entity::getYPos() + SI::Entity::getDy());
+}
+
+
 //
-// Operators------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------Operators---------------------------------------------------------
 //
-SI::Entity& SI::Entity::operator=(const SI::Entity& other)
-{
-    if(this != &other){
+SI::Entity& SI::Entity::operator=(const SI::Entity& other) {
+    if (this != &other) {
         SI::Entity::xPos = other.xPos;
         SI::Entity::yPos = other.yPos;
         SI::Entity::width = other.width;
@@ -96,78 +104,103 @@ SI::Entity& SI::Entity::operator=(const SI::Entity& other)
 }
 
 //
-// Getters--------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------Getters--------------------------------------------------------
 //
-float SI::Entity::getXPos() const
-{
+/**
+ * Get the x position of this entity.
+ * @return the x position.
+ */
+float SI::Entity::getXPos() const {
     return xPos;
 }
 
-float SI::Entity::getYPos() const
-{
+/**
+ * Get the y position of this entity.
+ * @return the y position.
+ */
+float SI::Entity::getYPos() const {
     return yPos;
 }
 
-float SI::Entity::getWidth() const
-{
+/**
+ * Get the width of this entity.
+ * @return the width.
+ */
+float SI::Entity::getWidth() const {
     return width;
 }
 
-float SI::Entity::getHeight() const
-{
+/**
+ * Get the height of this entity.
+ * @return the height.
+ */
+float SI::Entity::getHeight() const {
     return height;
 }
 
-float SI::Entity::getDx() const
-{
+/**
+ * Get the horizontal speed of this entity.
+ * @return the dx of this entity.
+ */
+float SI::Entity::getDx() const {
     return dx;
 }
 
-float SI::Entity::getDy() const
-{
+/**
+ * Get the vertical speed of this entity.
+ * @return the dy of this entity.
+ */
+float SI::Entity::getDy() const {
     return dy;
 }
 
 //
-// Setters--------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------Setters------------------------------------------------------
 //
-void SI::Entity::setXPos(float xPos)
-{
+/**
+ * Set the x position of the entity
+ * @param xPos
+ */
+void SI::Entity::setXPos(float xPos) {
     SI::Entity::xPos = xPos;
 }
 
-void SI::Entity::setYPos(float yPos)
-{
+/**
+ * Set the y position of the entity
+ * @param yPos
+ */
+void SI::Entity::setYPos(float yPos) {
     SI::Entity::yPos = yPos;
 }
 
-void SI::Entity::setWidth(float width)
-{
+/**
+ * Set the width of the entity
+ * @param width
+ */
+void SI::Entity::setWidth(float width) {
     SI::Entity::width = width;
 }
 
-void SI::Entity::setHeight(float height)
-{
+/**
+ * Set the height of the entity
+ * @param height
+ */
+void SI::Entity::setHeight(float height) {
     SI::Entity::height = height;
 }
 
-void SI::Entity::setDx(float dx)
-{
+/**
+ * Set the horizontal speed of the entity
+ * @param dx
+ */
+void SI::Entity::setDx(float dx) {
     SI::Entity::dx = dx;
 }
 
-void SI::Entity::setDy(float dy)
-{
+/**
+ * Set the vertical speed of the entity
+ * @param dy
+ */
+void SI::Entity::setDy(float dy) {
     SI::Entity::dy = dy;
-}
-
-
-//
-// -------------------------------------------------------Methods-------------------------------------------------------
-//
-
-void SI::Entity::updatePosition()
-{
-    SI::Entity::setXPos(SI::Entity::getXPos() + SI::Entity::getDx());
-    SI::Entity::setYPos(SI::Entity::getYPos() + SI::Entity::getDy());
 }

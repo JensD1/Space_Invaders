@@ -5,25 +5,26 @@
 #include "Timer.h"
 #include <iostream>
 
-SI::Timer::Timer()
-{
+//
+// ------------------------------------------------------Constructors---------------------------------------------------
+//
+SI::Timer::Timer() {
     std::cout << "Timer created." << std::endl;
 }
 
-SI::Timer::~Timer()
-{
+SI::Timer::~Timer() {
     std::cout << "Timer destroyed." << std::endl;
 }
 
-SI::Timer::Timer(const SI::Timer& other)
-{
+SI::Timer::Timer(const SI::Timer& other) {
     std::cout << "Timer copied." << std::endl;
 }
 
-SI::Timer& SI::Timer::operator=(const SI::Timer& other)
-{
-    if(this != &other)
-    {
+//
+// ---------------------------------------------------Operators---------------------------------------------------------
+//
+SI::Timer& SI::Timer::operator=(const SI::Timer& other) {
+    if (this != &other) {
         // at the moment nothing to do.
     }
     std::cout << "Timer assigned." << std::endl;

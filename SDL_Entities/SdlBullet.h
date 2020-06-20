@@ -12,7 +12,9 @@ namespace SDL_SI {
     public:
         // Constructors
         SdlBullet(float, float, float, float, float, float);
+
         ~SdlBullet();
+
         SdlBullet(const SDL_SI::SdlBullet&);
 
         // Operators

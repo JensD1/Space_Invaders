@@ -19,18 +19,27 @@ namespace SI {
     public:
         // methods
         virtual PlayerShip* createPlayerShip(float, float, float, float, float, float) = 0;
+
         virtual ReusableEntity* createBullet(float, float, float, float, float, float) = 0;
+
         virtual EnemyShip* createEnemyShip(float, float, float, float, float, float) = 0;
+
         virtual ReusableEntity* createProjectile(float, float, float, float, float, float) = 0;
+
         virtual BonusEntity* createPBonus(float, float, float, float, float, float) = 0;
+
         virtual BonusEntity* createNBonus(float, float, float, float, float, float) = 0;
+
         virtual Event* createEvent() = 0;
+
         virtual Timer* createTimer() = 0;
+
         virtual Window* createWindow() = 0;
+
         virtual Sound* createSound() = 0;
 
         //Constructors
-        virtual ~AFactory(){};
+        virtual ~AFactory() {};
     };
 }
 #endif //SPACE_INVADORS_AFACTORY_H

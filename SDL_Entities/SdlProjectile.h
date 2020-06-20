@@ -12,7 +12,9 @@ namespace SDL_SI {
     public:
         // Constructors
         SdlProjectile(float, float, float, float, float, float);
+
         ~SdlProjectile();
+
         SdlProjectile(const SDL_SI::SdlProjectile&);
 
         // Operators
