@@ -10,6 +10,8 @@
 
 namespace SI {
     class EnemyShip : public Entity {
+    private:
+        int fireChance;
     public:
         // Constructors
         EnemyShip(float, float, float, float, float, float);
@@ -25,6 +27,8 @@ namespace SI {
         virtual void visualize(SI::Window*) = 0;
 
         bool fireProjectile();
+
+        void increaseFireChance();
     };
 }
 

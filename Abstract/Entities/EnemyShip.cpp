@@ -14,6 +14,7 @@ SI::EnemyShip::EnemyShip(float xPos, float yPos, float width, float height, floa
                                                                                                              height, dx,
                                                                                                              dy) {
     srand(time(nullptr));
+    SI::EnemyShip::fireChance = 0;
     std::cout << "EnemyShip created" << std::endl;
 }
 
@@ -44,5 +45,12 @@ SI::EnemyShip& SI::EnemyShip::operator=(const SI::EnemyShip& other) {
  * @return true if a new projectile is fired, false if there's not a projectile fired.
  */
 bool SI::EnemyShip::fireProjectile() {
-    return (rand() % 10000) < SI::ENEMY_FIRECHANCE; // The chance is on 10000 and can be adjusted in GameConstants.h
+    return (rand() % 10000) < (SI::ENEMY_FIRECHANCE + SI::EnemyShip::fireChance); // The chance is on 10000 and can be adjusted in GameConstants.h
+}
+
+/**
+ * Increase the chance to fire a projectile.
+ */
+void SI::EnemyShip::increaseFireChance() {
+    SI::EnemyShip::fireChance += 5;
 }

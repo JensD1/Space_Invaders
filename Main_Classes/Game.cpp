@@ -473,6 +473,9 @@ SI::Game::gameScreen(int* currentScreen, bool* quit, SI::Event* event, SI::Windo
                         *score += SI::SCORE_HIT_ENEMY;
                         sound->playExplosion();
                         enemyExtraSpeed += SI::ENEMY_SPEED_UPDATE; // The speed of the other ones will increase.
+                        for(EnemyShip* enemy: enemies){
+                            enemy->increaseFireChance();
+                        }
                         if (!pbonus->getActive()) {
                             bullet->resetPosition();
                         }
